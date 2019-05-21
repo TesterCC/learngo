@@ -1,0 +1,4 @@
+Test for go function.
+Test go again.
+123456
+abcde
