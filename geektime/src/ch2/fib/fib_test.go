@@ -16,7 +16,7 @@ func TestFibList(t *testing.T) {
 
 	//var (
 	//	a = 1
-	//    b = 1
+	//  b = 1
 	//    )
 
 	// simplest
@@ -27,7 +27,7 @@ func TestFibList(t *testing.T) {
 	t.Log(a)
 
 	for i := 0; i < 5; i++ {
-		t.Log(" ", b)
+		t.Log(" ", b)    // Unit Test use t.Log()
 		tmp := a
 		a = b
 		b = tmp + a
