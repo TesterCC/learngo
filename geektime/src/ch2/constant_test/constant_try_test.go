@@ -2,6 +2,8 @@ package constant_test
 
 import "testing"
 
+// go test -v constant_try_test.go
+
 const (
 	Monday = iota + 1 //连续常量推荐这种写法
 	Tuesday

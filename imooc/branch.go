@@ -11,7 +11,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println("%s\n", contents)   // contents byte
+		fmt.Printf("%s\n", contents)   // contents byte
 	}
 	
 }

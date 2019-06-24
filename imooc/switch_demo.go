@@ -34,7 +34,7 @@ func eval(a, b int, op string) int {
 	case "/":
 		result = a / b
 	default:
-		panic("unsupported operator:"+op)
+		panic("unsupported operator:"+op)  //相当于报错，后面会详细讲
 	}
 	return result
 }

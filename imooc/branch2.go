@@ -16,7 +16,6 @@ func main() {
 	if contents, err := ioutil.ReadFile(filename); err != nil {
 		fmt.Println("cannot print file contents:", err)
 	} else {
-		fmt.Println("%s\n", string(contents))   // contents byte
+		fmt.Printf("%s\n", string(contents))   // contents byte
 	}
-	
 }
