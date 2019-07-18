@@ -21,6 +21,7 @@ func TestConstantTry(t *testing.T) {
 	t.Log(Monday, Tuesday, Thursday)
 }
 
+//需要位运算知识
 func TestConstantTry1(t *testing.T) {
 	//a := 7   //0111
 	a := 1 //0001

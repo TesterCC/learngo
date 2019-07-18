@@ -10,6 +10,7 @@ import (
 */
 // Go更推荐统一的赋值方式，Go 2.0可能会取消一些赋值方式
 
+// var a int = 1   //一般这样是用在全局或者外部变量
 func TestFibList(t *testing.T) {
 	//var a int = 1
 	//var b int = 1
@@ -35,6 +36,7 @@ func TestFibList(t *testing.T) {
 
 }
 
+// 在一个赋值语句中可以对多个变量进行同时赋值
 func TestExchange(t *testing.T) {
 	a := 1
 	b := 7
