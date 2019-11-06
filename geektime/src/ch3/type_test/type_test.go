@@ -37,5 +37,5 @@ func TestPoint(t *testing.T){
 func TestString(t *testing.T){
 	var s string
 	t.Log("*"+s+"*")
-	t.Log(len(s))
+	t.Log(len(s))   // 可以判断 s==""
 }
