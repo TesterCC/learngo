@@ -1,6 +1,14 @@
 package main
 
+import (
+	"fmt"
+	"math/cmplx"
+)
+
 /*
+
+https://tour.golang.org/basics/11
+
 Go的基本类型
 
 bool
@@ -20,8 +28,15 @@ complex64 complex128
 
 */
 
-// todo current site: https://tour.golang.org/basics/11
+var (
+	ToBe   bool       = false
+	MaxInt uint64     = 1<<64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
 
 func main() {
-	
+	// 占位符：%T相应值的类型的Go语法表示, %v相应值的默认格式
+	fmt.Printf("Type: %T Vaule: %v\n", ToBe, ToBe)
+	fmt.Printf("Type: %T Vaule: %v\n", MaxInt, MaxInt)
+	fmt.Printf("Type: %T Vaule: %v\n", z, z)
 }
