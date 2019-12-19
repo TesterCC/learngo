@@ -1,0 +1,7 @@
+#first, #second, #third{
+    width: 100px;
+    height: 50px;
+    border: 1px #333 solid;
+    margin: 5px;
+    float: left;
+}
