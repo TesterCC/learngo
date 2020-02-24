@@ -1,6 +1,11 @@
 package main
 
-// 2-12 gin基础：验证请求参数 - 自定义验证规则
+import (
+	"github.com/gin-gonic/gin"
+	"time"
+)
+
+// 2-12 gin基础：验证请求参数 - 自定义验证规则   1:38
 
 /*
 验证请求参数：
@@ -20,6 +25,14 @@ gin入门实战 - 基础精髓: https://github.com/e421083458/hello_gin
 
 */
 
+type Booking struct {
+	CheckIn time.Time
+	CheckOut time.Time
+}
+
 func main() {
-	
+	r:=gin.Default()
+	r.GET("/bookable", func(c *gin.Context) {
+
+	})
 }
