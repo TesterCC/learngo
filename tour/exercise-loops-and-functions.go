@@ -1,7 +1,14 @@
 package main
 
-// todo current site: http://127.0.0.1:3999/flowcontrol/8  https://tour.go-zh.org/flowcontrol/8
+import (
+	"fmt"
+	"math"
+)
+
+// http://127.0.0.1:3999/flowcontrol/8  https://tour.go-zh.org/flowcontrol/8
 /*
+
+ref: https://blog.csdn.net/qq_27818541/article/details/54345881
 
 实现一个平方根函数：用牛顿法实现平方根函数。
 
@@ -22,6 +29,25 @@ z := float64(1)
 
 */
 
+
+func Sqrt(x float64) float64 {
+	z := 1.0 // 定义一个初始值并对它初始化
+	temp := 0.0 // 临时变量，作为记录z上次的值
+
+	for {
+		z = z - (z*z-x)/(2*z)// 计算出最新的z值
+		fmt.Println(z)
+		if math.Abs(z-temp) < 0.000000000000001 {
+			break    //  当值停止改变（或改变非常小）的时候退出循环
+		} else {
+			temp = z    //　赋值最终的结果
+		}
+
+	}
+	return z
+}
+
 func main() {
-	
+	fmt.Println("牛顿法：", Sqrt(2))
+	fmt.Println("math.Sqrt(２):", math.Sqrt(2))
 }

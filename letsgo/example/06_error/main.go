@@ -6,6 +6,7 @@ import (
 
 /*
 https://pegasuswang.github.io/LetsGo/basics/06_error/error/
+https://pegasuswang.github.io/LetsGo/basics/06_error/error/#defer
 https://www.bilibili.com/video/av91237117
 
 go 中提供了一个 defer 语句用来延迟一个函数(匿名函数)或者方法的执行，它会在函数执行完成之后调用。
@@ -65,7 +66,7 @@ func Divide2(a, b int) (res int, e error) {
 
 
 func main() {
-	//fmt.Println(testDefer())
+	fmt.Println(testDefer())
 	/*  result:
 	function body
 	defer 2  LIFO
