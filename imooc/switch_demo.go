@@ -22,7 +22,7 @@ func grade(score int) string{
 
 
 //普通的switch， go中的switch会自动break，除非使用fallthrough
-func eval(a, b int, op string) int {
+func eval2(a, b int, op string) int {
 	var result int
 	switch op {
 	case "+":
@@ -52,10 +52,10 @@ func main() {
 		)
 
 	fmt.Println(
-		eval(3,4, "+"),
-		eval(7,6, "-"),
-		eval(5,6, "*"),
-		eval(6,3, "/"),
+		eval2(3,4, "+"),
+		eval2(7,6, "-"),
+		eval2(5,6, "*"),
+		eval2(6,3, "/"),
 		//eval(6,3, "%"),
 		)
 }

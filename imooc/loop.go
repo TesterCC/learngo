@@ -8,7 +8,12 @@ import (
 )
 
 /*
-2-6 循环
+2-5 循环
+
+for,if 后面的条件没有括号
+if条件里也可以定义变量
+没有while
+switch不需要break，也可以直接switch多个条件
 */
 
 // 功能：把整数转成二进制数
@@ -46,11 +51,12 @@ func convertToBin_v2(v int) string {
 func printFile(filename string) {
 	file, err := os.Open(filename)
 	if err != nil {   //nil是一个重要的预先定义好的标识符，是许多种类型的零值表示  https://www.jianshu.com/p/174aa63b2cc5
-		panic(err)   // 终止程序，然后报错
+		panic(err)   // 终止程序，然后报错，后面专门讲
 	}
 
 	scanner := bufio.NewScanner(file)
 
+	//go语言中没有while，这样没有初始和终止条件的for语句，相当于while
 	for scanner.Scan(){
 		fmt.Println(scanner.Text())
 	}
