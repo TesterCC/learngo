@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 http://127.0.0.1:3999/flowcontrol/12
 https://tour.go-zh.org/flowcontrol/12
@@ -14,5 +16,8 @@ go 中提供了一个 defer 语句用来延迟一个函数(匿名函数)或者�
 */
 
 func main() {
+
+	defer fmt.Println("world!!!")
+	fmt.Println("Hello")
 	
 }
