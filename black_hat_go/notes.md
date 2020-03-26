@@ -65,3 +65,25 @@ go fmt 自动格式化源代码，现在很多IDE自带格式自动整理了，�
 ```
 go fmt ./c1_demo.go 
 ```
+
+golint 代码规范检查，作用类似于pylint
+
+安装：
+```
+go get -u github.com/golang/lint/golint
+```
+
+使用：
+```
+golint [file/dir]
+
+e.g.
+
+➜  (master) ✗ golint ./black_hat_go
+black_hat_go/c1_demo.go:31:9: var Id should be ID
+```
+
+[Golint代码规范检测](https://blog.csdn.net/chenguolinblog/article/details/90665161)
+
+go vet 检查go代码语法
+[Go Vet 常见warning总结](https://www.jianshu.com/p/19a44cbc69fb)

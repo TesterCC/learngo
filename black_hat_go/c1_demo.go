@@ -28,6 +28,8 @@ c1_demo: Mach-O 64-bit executable x86_64
 */
 
 func main() {
-
+	// for test golint
+    //var Id = 33
+    //fmt.Println(Id)
 	fmt.Println("Hello, Black Hat Gophers!")
 }
