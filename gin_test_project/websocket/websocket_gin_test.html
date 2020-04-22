@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TesterCC Test Websocket by Gin</title>
+
+    <script>
+
+        var ws = new WebSocket("ws://localhost:3030/ping");
+        //连接打开时触发
+        ws.onopen = function(evt) {
+            console.log("Connection open ...");
+            ws.send("Hello WebSockets!");
+        };
+        //接收到消息时触发
+        ws.onmessage = function(evt) {
+            console.log("Received Message: " + evt.data);
+            console.log("Sending data...");
+        };
+        //连接关闭时触发
+        ws.onclose = function(evt) {
+            console.log("Connection closed.");
+        };
+
+    </script>
+</head>
+
+<body>
+
+refresh
+
+</body>
+</html>

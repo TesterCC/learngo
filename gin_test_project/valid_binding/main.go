@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 2-10 to 2-11 gin基础：验证请求参数 - 结构体验证
+// 2-12 gin基础：验证请求参数 - 结构体验证
 
 /*
 验证请求参数：
