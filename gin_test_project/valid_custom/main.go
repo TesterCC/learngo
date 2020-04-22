@@ -20,7 +20,7 @@ import (
 Test:
 curl -X GET "http://127.0.0.1:8888/testing?age=18&name=Lily&address=beijing"
 
-curl -X GET "http://127.0.0.1:8080/bookable?check_in=2020-04-30&check_out=2020-06-25"
+curl -X GET "http://127.0.0.1:9999/bookable?check_in=2020-04-30&check_out=2020-06-25"
 
 gin_scaffold课程代码：
 gin入门实战 - 基础精髓: https://github.com/e421083458/hello_gin
@@ -37,7 +37,7 @@ Gin具体默认封装规则：https://godoc.org/gopkg.in/go-playground/validator
 
 // 这里需要自定义 bookabledate
 type Booking struct {
-	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
+	CheckIn  time.Time `form:"check_in" binding:"required, bookabledate" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required, gtfield=CheckIn" time_format:"2006-01-02"`
 }
 
@@ -67,14 +67,14 @@ func main() {
 
 	r.GET("/bookable", func(c *gin.Context) {
 		var b Booking
-		if err := c.ShouldBind(&b);err!=nil {    // FIXME always error
-			c.JSON(500, gin.H{"error": err.Error()})
+		if err:=c.ShouldBind(&b);err!=nil {    // FIXME always error
+			c.JSON(500,gin.H{"error": err.Error()})
 			return
 		}
 		c.JSON(200, gin.H{"message": "ok!", "booking": b})
 
 	})
 
-	bindAddres := "localhost:7777"
+	bindAddres := "127.0.0.1:9999"
 	r.Run(bindAddres)
 }
