@@ -4,6 +4,8 @@ import "github.com/gin-gonic/gin"
 
 /*
 2-17 gin基础：中间件-自定义中间件
+配合ngrok做内网穿透可以直接公网调试
+ngrok http 8080
 */
 
 // 实现自定义中间件
