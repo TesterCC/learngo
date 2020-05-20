@@ -26,7 +26,7 @@ func say(s string) {
 }
 
 func main() {
-	go say("world")
+	go say("world")  // starts a new goroutine running
 	say("hello")
 
 }
