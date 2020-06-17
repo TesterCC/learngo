@@ -100,4 +100,8 @@ Java/Python：只能for each value，不能同时获取i,v
 - 调用`func f(arr [10]int)` 会**拷贝**数组
 - 在go语言中一般不直接使用数组，更多是用slice(切片)
 
+## 切片 Slice
 
+
+REF：
+[在线学习](https://www.bilibili.com/video/BV18Q4y1M7NV)
