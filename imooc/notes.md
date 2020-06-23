@@ -101,6 +101,49 @@ Java/Python：只能for each value，不能同时获取i,v
 - 在go语言中一般不直接使用数组，更多是用slice(切片)
 
 ## 切片 Slice
+- Slice本身没有数据，是对底层array的一个view
+- Slice可以向后扩展，不可以向前扩展
+- s[i]不可以超越len(s)，向后扩展不可以超越底层数组cap(s)
+
+### 向Slice添加元素
+- 添加元素时如果超越cap最大值，系统会重新分配更大的底层数组 （原来的数组如果没用，则会被垃圾回收）
+- 由于值传递的关系，必须接收append的返回值。
+```go
+s = append(s, val)
+```
+
+## Map
+
+### Map的操作
+
+- 创建: `make(map[string]int)`
+- 获取元素：`m[key]`
+- 当key不存在时，获得value类型的初始值或者零值
+- 用`value, ok := m[key]`来判断是否存在key
+
+### Map的遍历
+
+- 使用range遍历key，或者遍历key,value对
+- 不保证遍历顺序，如需顺序，需手动对key排序
+- 使用len获得元素个数
+
+### Map的key
+
+- map使用哈希表，必须可以比较相等
+- 除了slice,map,function的内建类型都可以作为key
+- Struct类型不包含上述字段，也可作为key （编译时会检查）
+
+例题：
+[无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/?utm_source=LCUS&utm_medium=ip_redirect_q_uns&utm_campaign=trans)
+[英文版](https://leetcode.com/problems/longest-substring-without-repeating-characters)
+同：[剑指Offer 48 寻找最长不含有重复字符的子串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+解题思路：
+
+对于每一个字母x
+- `lastOccurred[x]`不存在，或者`< start` --> 无需操作
+- `lastOccurred[x] >= start ` --> 更新start
+- 更新`lastOccurred[x]`，更新maxLength
 
 
 REF：
