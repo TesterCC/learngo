@@ -6,7 +6,13 @@
 - 加u是无符号整数，int长度不设置则根据操作系统32位还是64位来决定
 
 #### byte, rune    
-- rune是go语言的字符类型(类似C语言中的char)，因为utf-8编码很多字符是3字节，所以用int32 4字节代表rune; byte 8位 
+- rune是go语言的字符类型(类似C语言中的char)，因为utf-8编码很多字符是3字节，所以用int32 4字节代表rune; byte 8位
+
+官方文档
+
+- byte等同于int8，常用来处理ascii字符
+- rune等同于int32，常用来处理unicode或utf-8字符
+
 
 #### float32，float64, complex64, complex128
 - float浮点数(属于实数)，complex复数
