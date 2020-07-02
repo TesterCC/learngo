@@ -151,6 +151,28 @@ s = append(s, val)
 - `lastOccurred[x] >= start ` --> 更新start
 - 更新`lastOccurred[x]`，更新maxLength
 
+## rune相当于go的char
+
+- 使用range遍历pos,rune对
+- 使用utf8.RuneCountInString获得字符数量
+- 使用len获得字符长度
+- 使用[]byte获得字节
+
+## 其他字符串操作
+
+- Field, Split, Join
+- Contains, Index
+- ToLower, ToUpper
+- Trim, TrimRight, TrimLeft
+
+具体看[官方文档](https://golang.google.cn/pkg/)
+
+## 面向对象
+
+- go语言仅支持封装，不支持继承和多态
+- go语言没有class，只有struct
+
+
 
 REF：
 [在线学习](https://www.bilibili.com/video/BV18Q4y1M7NV)
