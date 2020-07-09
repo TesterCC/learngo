@@ -12,7 +12,7 @@ import (
 )
 
 /*
-https://www.bilibili.com/video/BV18Q4y1M7NV?p=53  06:53
+https://www.bilibili.com/video/BV18Q4y1M7NV?p=54
 go get -v golang.org/x/text
 go get -v golang.org/x/net/html
 */
