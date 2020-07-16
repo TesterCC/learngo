@@ -14,6 +14,6 @@ type Foo struct {
 func main() {
 	f := Foo{"Joe Junior", "Hello Senior"}
 	b, _ := json.Marshal(f) // Marshal() method encodes the struct to JSON, return a byte slice
-	fmt.Println(string(b))  // a JSON-encoded string representation
+	fmt.Println(string(b))  // a JSON-encoded string representation: {"Bar":"Joe Junior","Baz":"Hello Senior"}
 	json.Unmarshal(b, &f)
 }
