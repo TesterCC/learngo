@@ -3,11 +3,15 @@ package main
 import "fmt"
 
 /*
-http://127.0.0.1:3999/concurrency/1
-https://tour.go-zh.org/concurrency/1
+http://127.0.0.1:3999/concurrency/2
+https://tour.go-zh.org/concurrency/2
 
-信道
+
+信道    Channels
+
+Channels are a typed conduit through which you can send and receive values with the channel operator, <-.
 信道是带有类型的管道，你可以通过它用信道操作符 <- 来发送或者接收值。
+
 ch <- v    // Send v to channel ch.
 v := <-ch  // Receive from ch, and assign value to v.
 

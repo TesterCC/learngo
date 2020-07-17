@@ -9,7 +9,10 @@ import (
 http://127.0.0.1:3999/concurrency/1
 https://tour.go-zh.org/concurrency/1
 
+Go程
 A goroutine is a lightweight thread managed by the Go runtime.
+
+starts a new goroutine running
 go f(x, y, z) 会启动一个新的 Go 程并执行 f(x, y, z)
 
 f, x, y 和 z 的求值发生在当前的 Go 程中，而 f 的执行发生在新的 Go 程中。
