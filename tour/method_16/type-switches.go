@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-todo current site
+
 http://127.0.0.1:3999/methods/16
 https://tour.go-zh.org/methods/16
 
