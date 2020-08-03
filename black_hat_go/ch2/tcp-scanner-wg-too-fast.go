@@ -8,9 +8,12 @@ import (
 
 /*
 P27-28  use WaitGroup from the sync package, is a thread-safe way to control concurrency.
+issue: may see inconsistent result
 */
+const target2 = "testphp.vulnweb.com"
+
 func main() {
-	var target = "testphp.vulnweb.com"
+	//var target = "testphp.vulnweb.com"
 
 	var wg sync.WaitGroup  // step 1
 
@@ -18,7 +21,7 @@ func main() {
 		wg.Add(1)   // step 2
 		go func(j int){
 			defer wg.Done()   // step 3
-			address := fmt.Sprintf(target+":%d", i)
+			address := fmt.Sprintf(target2 +":%d", i)
 			fmt.Println(address)
 			conn, err := net.Dial("tcp", address)
 			if err != nil {

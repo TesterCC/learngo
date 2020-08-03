@@ -6,7 +6,8 @@ import (
 )
 
 /*
-P28-29 Port Scanning Using a Worker Pool
+29 Port Scanning Using a Worker Pool
+2-7 A basic worker pool
 */
 
 // A worker function for processing work
