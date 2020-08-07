@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// P43
+// P43 匿名变量
 
 func getName() (string, string) {
 	return "Alice", "Albert"
