@@ -51,5 +51,24 @@ func main() {
 	nameField, _ := typeOfHero.FieldByName("Name")
 	fmt.Printf("field name is %s, type is %s, kind is %s\n", nameField.Name, nameField.Type, nameField.Type.Kind())
 
-	// P78-82 todo
+
+	// P78-82 获取接口Person中方法的方法类型对象
+	// 声明一个Person接口，并用Hero作为接收器
+	var person Person = &Hero{}
+	// 获取接口Person的类型对象
+	typeOfPerson := reflect.TypeOf(person)
+	// 打印Person的方法类型和名称
+	for i := 0; i<typeOfPerson.NumMethod();i++{
+		fmt.Printf("method is %s, type is %s, kind is %s.\n",
+			typeOfPerson.Method(i).Name,
+			typeOfPerson.Method(i).Type,
+			typeOfPerson.Method(i).Type.Kind())
+	}
+	method,_ := typeOfPerson.MethodByName("Run")
+	fmt.Printf("method is %s, type is %s, kind is %s.\n", method.Name, method.Type, method.Type.Kind())
+
+	// 可以使用reflect.New方法根据变量的Type对象创建一个相同类型的新变量，值以Value对象的形式返回
+	typeOfHero2 := reflect.TypeOf(Hero{})
+	heroValue := reflect.New(typeOfHero2)
+	fmt.Printf("Hero's type is %s, kind is %s\n", heroValue.Type(), heroValue.Kind())
 }
