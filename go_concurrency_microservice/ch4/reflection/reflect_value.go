@@ -21,4 +21,12 @@ func main() {
 	valueOfName2 := reflect.ValueOf(&name)  // 获取name指针的value
 	valueOfName2.Elem().Set(reflect.ValueOf("Bob"))
 	fmt.Println(name)
+
+	name3 := "Chris"
+	valueOfName3 := reflect.ValueOf(name3)
+	fmt.Printf("name can be address : %t\n", valueOfName3.CanAddr())
+	valueOfName4 := reflect.ValueOf(&name3)
+	fmt.Printf("name can be address : %t\n", valueOfName4.CanAddr())
+	valueOfName5 := valueOfName4.Elem()
+	fmt.Printf("name can be address : %t\n", valueOfName5.CanAddr())   // 只有指针类型解引后的Value才是可寻址的
 }

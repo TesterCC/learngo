@@ -71,4 +71,44 @@ func main() {
 	typeOfHero2 := reflect.TypeOf(Hero{})
 	heroValue := reflect.New(typeOfHero2)
 	fmt.Printf("Hero's type is %s, kind is %s\n", heroValue.Type(), heroValue.Kind())
+
+	// P80 结构体变量设置
+	hero := &Hero{
+		Name: "Alan",
+	}
+	valueOfHero3 := reflect.ValueOf(hero).Elem()
+
+	valueOfName := valueOfHero3.FieldByName("Name")
+
+	// 判断字段的value是否可以设定变量值
+	if valueOfName.CanSet(){
+		valueOfName.Set(reflect.ValueOf("David"))
+	}
+	fmt.Printf("Hero name is  %s .\n", hero.Name)
+
+	fmt.Println("P81 reflection interface...")
+
+	// P81 4-1 使用反射调用接口方法
+	// 1.首先声明了一个Person接口并使用Hero结构体来实现
+	var person2 Person = &Hero{
+		Name:  "Eric",
+		Age:   33,
+		Speed: 100,
+	}
+
+	// 2.接着获取了Person2的Value对象
+	valueOfPerson := reflect.ValueOf(person2)
+	// get SayHello Method
+	sayHelloMethod := valueOfPerson.MethodByName("SayHello")
+	// 构建调用参数并通过#Call调用方法
+	sayHelloMethod.Call([]reflect.Value{reflect.ValueOf("Jack")})    // 传入被反射方法的参数
+	// get Run method
+	runMethod := valueOfPerson.MethodByName("Run")
+	// 通过#Call调用方法并获取结果
+	result := runMethod.Call([]reflect.Value{})
+	fmt.Printf("Result of run method is %s.", result[0])
+
+   // P81 bottom need to verify, report error.
+
+
 }
