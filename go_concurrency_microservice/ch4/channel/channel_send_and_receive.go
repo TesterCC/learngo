@@ -7,7 +7,7 @@ import (
 )
 
 /*
-P91 channel
+P91 4-2 协程使用channel发送和接收数据
 channel 作为一个具备长度的容器，可以被遍历。
 需要注意的是，在channel关闭后不允许再往通道中放入数据，不然会抛出panic
 */
