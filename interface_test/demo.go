@@ -7,8 +7,9 @@ import (
 	"net/http"
 )
 
-const LOGIN_URL = "https://10.0.0.115/api/login/"
+const LoginUrl = "https://10.0.0.115/api/login/"
 
+// It's so inconvenient...
 func main() {
 	// 通过设置tls.Config的InsecureSkipVerify为true，client将不再对服务端的证书进行校验。
 	tr := &http.Transport{
@@ -18,8 +19,8 @@ func main() {
 	client := &http.Client{Transport:tr}
 
 	// simulate a get post
-	//resp, err := http.Get(LOGIN_URL)
-	resp, err := client.Get(LOGIN_URL)
+	//resp, err := http.Get(LoginUrl)
+	resp, err := client.Get(LoginUrl)
 
 	if err != nil {
 		panic(err)
