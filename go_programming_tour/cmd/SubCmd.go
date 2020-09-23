@@ -22,7 +22,7 @@ go run go_programming_tour/cmd/SubCmd.go python -n=CodeCat
 var name string
 
 func main() {
-	flag.Parse()  // 将命令行解析为定义的标志，一遍后续参数使用
+	flag.Parse()  // 将命令行解析为定义的标志，以便后续参数使用
 
 	// 该方法会返回带有这个指定名称和错误处理属性的空命令集，相当于创建一个新的命令集去支持子命令，第二个参数ErrorHandling用于指定处理异常错误
 	goCmd := flag.NewFlagSet("go", flag.ExitOnError)
