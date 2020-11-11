@@ -8,13 +8,15 @@ import (
 )
 
 /*
+P12
 1.5 获取一个url
 
 fetch输出从URL获取的内容
 
 run in terminal:
 go run get_a_url.go http://www.xxx.com
-
+go run get_a_url.go https://paper.seebug.org/
+go run get_a_url.go https://paper.seebug.org/rss/
 */
 
 func main() {
