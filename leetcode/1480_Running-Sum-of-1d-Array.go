@@ -16,7 +16,9 @@ func runningSum(nums []int) []int {
 	return nums
 }
 
+
 func main() {
 	//fmt.Println(arr)
 	runningSum(arr)
+
 }
