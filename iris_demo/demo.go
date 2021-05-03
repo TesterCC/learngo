@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/kataras/iris/v12"
 )
-
+// go get github.com/kataras/iris/v12
 // curl http://localhost:8989/test
 
 func main() {
