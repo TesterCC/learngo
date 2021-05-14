@@ -18,3 +18,5 @@
 *.db
 *.log
 autotools/
+log.txt
+a.txt
