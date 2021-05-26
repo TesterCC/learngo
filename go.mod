@@ -16,4 +16,5 @@ require (
 	github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77 // indirect
 	go.mongodb.org/mongo-driver v1.4.4
 	golang.org/x/net v0.0.0-20200226121028-0de0cce0169b // indirect
+	golang.org/x/sys v0.0.0-20210514084401-e8d321eab015 // indirect
 )
