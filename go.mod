@@ -3,6 +3,7 @@ module learngo
 go 1.13
 
 require (
+	github.com/PuerkitoBio/goquery v1.7.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20210224194228-fe8f1750fd46 // indirect
 	github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6 // indirect
 	github.com/astaxie/beego v1.12.1
