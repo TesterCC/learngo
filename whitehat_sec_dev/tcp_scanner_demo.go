@@ -26,7 +26,7 @@ func Connect(ip string, port int) (net.Conn, error) {
 }
 
 func main() {
-	var ip = "10.0.4.141"
+	var ip = "10.0.4.150"
 	//var port = 80
 	var port = 3389
 	_, err := Connect(ip, port)

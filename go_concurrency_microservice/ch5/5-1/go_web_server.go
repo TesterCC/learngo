@@ -8,7 +8,7 @@ import (
 )
 
 /*
-P 104-105
+P104-105 5.1 快速构建一个Go Web服务
 */
 
 func sayHello(w http.ResponseWriter, r *http.Request) {
@@ -17,13 +17,14 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Path: ", r.URL.Path)
 	fmt.Println("Host: ", r.Host)
 
+	// 4.1 打印Form表单中的键值对value
 	for k, v := range r.Form {
 		fmt.Println("key: ", k)
 		//fmt.Println("value: ", v)   // value:  [CC]
 		fmt.Println("val: ", strings.Join(v,""))   // val:  CC
 	}
 
-	_, _ = fmt.Fprintf(w, "Hello Web, %s!", r.Form.Get("name")) // 5.写入到w的是输出到客户端的内容
+	_, _ = fmt.Fprintf(w, "Hello Web, %s!", r.Form.Get("name")) // 5.写入到w的是输出到客户端的内容  POSTMAN的响应结果中可见
 
 }
 
