@@ -12,6 +12,7 @@ type User struct {
 }
 
 func write(w http.ResponseWriter, r *http.Request) {
+	// 设置自定义header
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("X-Custom-Header", "custom header")
 	w.WriteHeader(201)
