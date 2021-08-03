@@ -12,6 +12,22 @@ import (
 // curl http://127.0.0.1:8000/user/testercc/push
 
 
+//func AuthMiddleWare() gin.HandlerFunc {
+//	return func(c *gin.Context) {
+//		token := c.Request.Header.Get("Authorization")
+//		authorized := check(token) //调用认证方法，需要实现check()
+//		if authorized {
+//			c.Next()
+//			return
+//		}
+//		c.JSON(http.StatusUnauthorized, gin.H{
+//			"error": "Unauthorized",
+//		})
+//		c.Abort()
+//		return
+//	}
+//}
+
 func main() {
 	router := gin.Default() // 创建一个路由handler
 
@@ -36,6 +52,11 @@ func main() {
 		c.String(http.StatusOK, msg)
 
 	})
+
+	//// 使用中间件的模板，但是这里的 AuthMiddleWare()在代码中没有实现check()函数
+	//router.GET("/home", AuthMiddleWare(), func(c *gin.Context) {
+	//	c.JSON(http.StatusOK, gin.H{"data": "home"})
+	//})
 
 	err := router.Run(":8000") // 监听 8000, 默认监听 8080
 	if err != nil {
