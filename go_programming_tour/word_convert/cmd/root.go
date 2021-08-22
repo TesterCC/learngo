@@ -14,6 +14,8 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
+// 每一个子命令，都是需要到 rootCmd 中进行注册的
 func init() {
 	rootCmd.AddCommand(wordCmd)
+	rootCmd.AddCommand(timeCmd)
 }
