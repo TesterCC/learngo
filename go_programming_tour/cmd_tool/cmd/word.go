@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra" // Cobra既是用于创建强大的现代CLI应用程序的库，也是用于生成应用程序和命令文件的程序。
-	"learngo/go_programming_tour/word_convert/internal/word"
+	"learngo/go_programming_tour/cmd_tool/internal/word"
 	"log"
 	"strings"
 )
