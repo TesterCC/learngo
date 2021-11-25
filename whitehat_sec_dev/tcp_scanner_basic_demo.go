@@ -15,8 +15,11 @@ TCP全链接扫描原理：调用socket的connect函数连接到目标IP的特�
 go get -u github.com/malfunkt/iprange
 */
 
-// 最简单理解版本，但只能检测一个IP的一个端口   Dial 与 DialTimeout 的区别是后者增加了超时时间
+// 最简单理解版本，但只能检测一个IP的一个端口
+// Dial 与 DialTimeout 的区别是后者增加了超时时间，无论想创建什么协议的连接，都只需要调用这2个函数即可
+// 最简单的 TCP全连接 端口扫描器，一次仅能检测一个IP的一个端口。
 func Connect(ip string, port int) (net.Conn, error) {
+	//
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%v:%v", ip, port), 2*time.Second)
 
 	defer func() {
@@ -28,7 +31,7 @@ func Connect(ip string, port int) (net.Conn, error) {
 }
 
 func main() {
-	var ip = "10.0.4.69"
+	var ip = "10.0.4.148"
 	//var port = 80
 	var port = 5000
 	_, err := Connect(ip, port)
