@@ -21,6 +21,6 @@ func TestInit(t *testing.T){
 	k := 100
 	v := p * float64(k)
 	//t.Log(reflect.TypeOf(v))
-	t.Log(v)                 // error print
+	t.Log(v)                 // error print  错误的打印方式
 	t.Logf("%f", v)   // correct print
 }

@@ -37,7 +37,7 @@ func main() {
 		Addr: "Zoo, China", // 需要加 , 号结尾
 	}
 
-	// 序列化： obj ->  字节序列
+	// json序列化： obj -> 字节序列
 	data2, err := json.Marshal(p2) // 类似python, json.dumps()
 
 	if err != nil {

@@ -5,7 +5,15 @@ import (
 	"fmt"
 )
 
-// 1.4.3 表到结构体的转换 P56
+// 1.4.3 表到结构体的转换 P48-56
+// 想要获取标中列信息，需访问 information_schema 数据库中的 COLUMNS 表
+
+
+// DBModel是整个数据库连接的核心对象
+type DBModel struct {
+	DBEngine *sql.DB
+	DBInfo   *DBInfo
+}
 
 // 结构体 DBInfo 用于存储连接MySQL的一些基本信息
 type DBInfo struct {
@@ -14,12 +22,6 @@ type DBInfo struct {
 	UserName string
 	Password string
 	Charset  string
-}
-
-// DBModel是整个数据库连接的核心对象
-type DBModel struct {
-	DBEngine *sql.DB
-	DBInfo   *DBInfo
 }
 
 // TableColumn 用于存储COLUMNS表中我们需要的一些字段
