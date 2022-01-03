@@ -35,7 +35,7 @@ type TableColumn struct {
 	ColumnComment string
 }
 
-// 表字段类型映射
+// 表字段类型映射  由于DataType字段的类型和Go结构体中的类型不完全一致  简单枚举+map映射获取
 var DBTypeToStructType = map[string]string{
 	"int":        "int32",
 	"tinyint":    "int8",
