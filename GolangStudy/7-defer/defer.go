@@ -10,7 +10,7 @@ ref: https://www.bilibili.com/video/BV1gf4y1r79E?p=11
 
 func main() {
 	// 写入defer关键字  在执行最后，在结束之前调用
-	// 多个defer是压栈的形式，后进先出
+	// 多个defer是压栈的形式，后进先出，先进后出 FILO
 	defer fmt.Println("main end1")
 	defer fmt.Println("main end2")
 
