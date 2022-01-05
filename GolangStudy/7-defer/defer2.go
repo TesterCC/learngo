@@ -8,7 +8,7 @@ import "fmt"
 return func called...
 defer func called...
 
-return先执行，defer后执行
+return之后的语句先执行，defer之后的语句后执行
 
 defer是当前程序逻辑结束后才出栈
 */
