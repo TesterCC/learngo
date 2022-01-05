@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 /*
+slice切片，即动态数组
 1.golang默认都是采用值传递，即拷贝传递
 2.有些值天生就是指针（slice、map、channel）
 */
