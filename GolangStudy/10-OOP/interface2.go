@@ -16,8 +16,16 @@ func myFunc(arg interface{})  {
 	fmt.Println("myFunc is called ...")
 	fmt.Println(arg)
 
-	// interface{} 该如何区分 此时引用的底层数据类型到底是什么？ 3：56
+	// interface{} 该如何区分 此时引用的底层数据类型到底是什么？
 
+	// 给 interface{} 提供"断言"的机制  断言仅限interface{}
+    value,ok := arg.(string)
+	if !ok {
+		fmt.Println("arg is not string type")
+	} else {
+		fmt.Println("arg is string type, value = ", value)
+		fmt.Printf("value type is %T\n", value)
+	}
 }
 
 type Book2 struct {
