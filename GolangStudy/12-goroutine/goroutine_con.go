@@ -5,12 +5,6 @@ import (
 	"time"
 )
 
-/*
-ref:
-https://www.bilibili.com/video/BV1gf4y1r79E
-8小时转职Golang工程师
-*/
-
 func goFunc(i int)  {
 	fmt.Println("goroutine", i, "...")
 }
