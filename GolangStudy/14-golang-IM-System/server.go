@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net"
 	"sync"
 )
@@ -12,7 +13,7 @@ type Server struct {
 	Ip   string
 	Port int
 
-	// online user map ,  key当前用户名，value当前用户对象
+	// 在线用户的列表 online user map ,  key当前用户名，value当前用户对象
 	OnlineMap map[string]*User
 	mapLock   sync.RWMutex
 
@@ -66,10 +67,34 @@ func (this *Server) Handler(conn net.Conn) {
 	this.OnlineMap[user.Name] = user
 	this.mapLock.Unlock()
 
-	//广播当前用户上线消息
+	// 广播当前用户上线消息
 	this.BroadCast(user, "已上线")
 
-	// 保持当前handler阻塞
+	// 接收客户端client发送的消息
+	// important 单独goroutine处理当前套接字的读请求
+	go func() {
+		buf := make([]byte, 4096)
+		for {
+			n,err := conn.Read(buf)
+			// 读出0表示客户端是合法关闭
+			if n == 0 {
+				this.BroadCast(user, "下线")
+				return
+			}
+
+			if err != nil && err != io.EOF {
+				fmt.Println("Conn Read err: ", err)
+				return
+			}
+
+			// 提取用户的消息(去除'\n')
+			msg := string(buf[:n-1])
+			// 将得到的消息进行广播
+			this.BroadCast(user, msg)
+		}
+	}()
+
+	// 保持当前handler阻塞 goroutine不死
 	select {
 
 	}

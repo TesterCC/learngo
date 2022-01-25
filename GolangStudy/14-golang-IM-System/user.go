@@ -20,7 +20,7 @@ func NewUser(conn net.Conn) *User {
 		conn: conn,
 	}
 
-	//启动监听当前user channel消息的goroutine
+	// 启动监听当前user channel消息的goroutine
 	go user.ListenMessage()
 
 	return user
