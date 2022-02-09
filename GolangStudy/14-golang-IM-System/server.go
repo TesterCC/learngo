@@ -5,6 +5,7 @@ import (
 	"io"
 	"net"
 	"sync"
+	"time"
 )
 
 // 服务端 Server基本的listen操作
@@ -65,6 +66,10 @@ func (this *Server) Handler(conn net.Conn) {
     // user online
 	user.Online()
 
+	// 监听用户是否活跃的channel
+	isLive := make(chan bool)
+	
+
 	// 接收客户端client发送的消息
 	// important 单独goroutine处理当前套接字的读请求
 	go func() {
@@ -88,13 +93,35 @@ func (this *Server) Handler(conn net.Conn) {
 
 			// 用户针对msg进行消息处理
 			user.DoMessage(msg)
+
+			// 用户的任意消息，代表当前用户是一个活跃的用户
+			isLive <- true
 		}
 	}()
 
-	// 保持当前handler阻塞 goroutine不死
-	select {
+	for {
+		// 保持当前handler阻塞 goroutine不死
+		select {
+		case <- isLive:
+			// 当前用户是活跃的，应该重置定时器
+			// 不做任何事情，为了要激活select，更新下面的定时器
+        // timeout 20s
+		case  <- time.After(time.Second * 20):
+			// 代码逻辑进入这里说明已经超时
+			// 将当前的User强制关闭
+			user.SendMsg("你超时被踢了")
 
+			// 销毁用户资源
+			close(user.C)
+
+			// 关闭连接
+			conn.Close()
+
+			// 退出当前Handler
+			return // runtime.Goexit()
+		}
 	}
+
 
 }
 
