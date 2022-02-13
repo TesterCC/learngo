@@ -93,6 +93,10 @@ func (this *User) DoMessage(msg string) {
 			this.SendMsg("您已更新用户名：" + this.Name  + "\n")
 		}
 
+	} else if len(msg) > 4 && msg[:3] == "to|" {
+		// 消息格式：to|张三|消息内容
+
+		// 1 获取对方的用户名 // P45
 	} else {
 		// 正常的消息广播
 		this.server.BroadCast(this, msg)
