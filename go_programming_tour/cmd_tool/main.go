@@ -42,5 +42,8 @@ Local 是如何表示本地时区的
 
 时区信息既浩繁又多变，Unix 系统以标准格式存于文件中，这些文件位于 /usr/share/zoneinfo，而本地时区可以通过 /etc/localtime 获取，这是一个符号链接，指向 /usr/share/zoneinfo 中某一个时区。
 比如我本地电脑指向的是：/var/db/timezone/zoneinfo/Asia/Shanghai。
+
+go run main.go sql struct --username root --password xxx --db=blog_service --table blog_tag
+go run main.go sql struct --username root --password xxx --db=blog_service --table blog_article
 */
 

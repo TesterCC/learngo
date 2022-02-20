@@ -1,4 +1,4 @@
-package main
+package sql2struct
 
 import (
 	"database/sql"
@@ -81,7 +81,7 @@ func (m *DBModel) Connect() error {
 	)
 	// debug
 	fmt.Println(dsn)
-	// 参数1 驱动名称 如mysql；参数2 驱动连接数据库的信息
+	// 用的标准库database/sql的Open方法； 参数1 驱动名称 如mysql；参数2 驱动连接数据库的信息
 	m.DBEngine, err = sql.Open(m.DBInfo.DBType, dsn)
 	if err != nil {
 		return err

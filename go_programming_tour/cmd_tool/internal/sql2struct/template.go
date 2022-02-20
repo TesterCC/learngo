@@ -1,4 +1,4 @@
-package main
+package sql2struct
 
 import (
 	"fmt"
@@ -17,7 +17,9 @@ func (model {{.TableName | ToCamelCase}}) TableName() string {
 	return "{{.TableName}}"
 }`
 
-// 下面3个结构体，分别承担主轴的StructTemplate、
+// 下面3个结构体，分别承担主轴的StructTemplate、StructColumn、StructTemplateDB
+// StructColumn 用来存储转换后的Go结构体中的所有字段信息
+// StructTemplateDB 用来存储最终用于渲染的模板对象信息
 type StructTemplate struct {
 	strcutTpl string
 }
@@ -38,6 +40,7 @@ func NewStructTemplate() *StructTemplate {
 	return &StructTemplate{strcutTpl: strcutTpl}
 }
 
+// 数据库类型到Go结构体的转换和对JSON Tag的处理
 func (t *StructTemplate) AssemblyColumns(tbColumns []*TableColumn) []*StructColumn {
 	tplColumns := make([]*StructColumn, 0, len(tbColumns))
 	for _, column := range tbColumns {
@@ -52,8 +55,9 @@ func (t *StructTemplate) AssemblyColumns(tbColumns []*TableColumn) []*StructColu
 
 	return tplColumns
 }
-
+// 对模块渲染的自定义函数和模块对象进行处理
 func (t *StructTemplate) Generate(tableName string, tplColumns []*StructColumn) error {
+	// 声明了一个名为sql2struct的心模板对象
 	tpl := template.Must(template.New("sql2struct").Funcs(template.FuncMap{
 		"ToCamelCase": word.UnderscoreToUpperCamelCase,
 	}).Parse(t.strcutTpl))
