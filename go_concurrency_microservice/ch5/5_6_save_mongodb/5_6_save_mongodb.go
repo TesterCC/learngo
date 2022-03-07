@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 type User struct {
@@ -39,7 +40,7 @@ var tpl = `<html>
 </html>`
 
 func connect(cName string) (*mgo.Session, *mgo.Collection) {
-	session, err := mgo.Dial("mongodb://10.0.4.148:27017/") //Mongodb's connection
+	session, err := mgo.Dial("mongodb://127.0.0.1:27017/") //Mongodb's connection
 	checkErr(err)
 	session.SetMode(mgo.Monotonic, true)
 	//return a instantiated collect
@@ -81,9 +82,9 @@ func userInfo(w http.ResponseWriter, r *http.Request) {
 	//请求的是登录数据，那么执行登录的逻辑判断
 	_ = r.ParseForm()
 	if r.Method == "POST" {
-		user1 := User{Name: r.Form.Get("username"), Habits: r.Form.Get("habits")}
+		user1 := User{Name: r.Form.Get("username"), Habits: r.Form.Get("habits"), CreatedTime: time.Now().UTC().Format("2006-01-02")}
 		store(user1)
-		//fmt.Fprintf(w, " %v", queryByName("aoho")) //这个写入到w的是输出到客户端的
+		//fmt.Fprintf(w, " %v", queryByName("abc")) //这个写入到w的是输出到客户端的
 		fmt.Fprintf(w, " %v", queryByName(r.Form.Get("username"))) // 查询插入的信息, 这个写入到w的是输出到客户端的
 	}
 }
