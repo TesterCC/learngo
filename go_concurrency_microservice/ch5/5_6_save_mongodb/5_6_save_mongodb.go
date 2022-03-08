@@ -82,7 +82,8 @@ func userInfo(w http.ResponseWriter, r *http.Request) {
 	//请求的是登录数据，那么执行登录的逻辑判断
 	_ = r.ParseForm()
 	if r.Method == "POST" {
-		user1 := User{Name: r.Form.Get("username"), Habits: r.Form.Get("habits"), CreatedTime: time.Now().UTC().Format("2006-01-02")}
+		//user1 := User{Name: r.Form.Get("username"), Habits: r.Form.Get("habits"), CreatedTime: time.Now().UTC().Format("2006-01-02 15:04:05")}   // 这里指定了UTC时间
+		user1 := User{Name: r.Form.Get("username"), Habits: r.Form.Get("habits"), CreatedTime: time.Now().Format("2006-01-02 15:04:05")}   // 默认是本地时间
 		store(user1)
 		//fmt.Fprintf(w, " %v", queryByName("abc")) //这个写入到w的是输出到客户端的
 		fmt.Fprintf(w, " %v", queryByName(r.Form.Get("username"))) // 查询插入的信息, 这个写入到w的是输出到客户端的
