@@ -26,6 +26,7 @@ func log_output(str_content string) {
 	fd.Close()
 }
 
+
 func main() {
-	log_output("test")
+	log_output("test")   // write in log.txt
 }
