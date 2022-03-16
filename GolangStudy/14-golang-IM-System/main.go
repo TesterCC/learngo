@@ -8,6 +8,7 @@ go build -o server main.go server.go
 
 在Terminal用nc尝试连接，看服务器返回信息
 nc 127.0.0.1 8888
+这就是聊天用户的上线方式
  */
 
 func main() {

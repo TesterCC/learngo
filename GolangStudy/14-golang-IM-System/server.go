@@ -106,7 +106,7 @@ func (this *Server) Handler(conn net.Conn) {
 			// 当前用户是活跃的，应该重置定时器
 			// 不做任何事情，为了要激活select，更新下面的定时器
         // timeout 20s
-		case  <- time.After(time.Second * 20):
+		case  <- time.After(time.Second * 300):
 			// 代码逻辑进入这里说明已经超时
 			// 将当前的User强制关闭
 			user.SendMsg("你超时被踢了")
