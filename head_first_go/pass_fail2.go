@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 )
 
 //ebook P114
@@ -25,4 +27,26 @@ func main() {
 	}
 	// 打印用户输入的内容
 	fmt.Println(input)
+
+	if true {
+		fmt.Println("I'll be printed!")
+	}
+
+	if false {
+		fmt.Println("I won't be printed!")
+	}
+
+	input = strings.Replace(input, "\n", "", -1)
+	grade, err := strconv.ParseInt(input, 10, 32)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if grade == 100 {
+		fmt.Println("Perfect!")
+	} else if grade >= 60 {
+		fmt.Println("You pass!")
+	} else {
+		fmt.Println("You fail!")
+	}
 }
