@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 )
-
+// pdf P149
 // go run get_file_size.go
 func main() {
 	fileInfo, err := os.Stat("my.txt")

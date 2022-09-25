@@ -25,21 +25,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// 打印用户输入的内容
-	//fmt.Println(input)
 
-	//if true {
-	//	fmt.Println("I'll be printed!")
-	//}
-	//
-	//if false {
-	//	fmt.Println("I won't be printed!")
-	//}
-
-	//input = strings.Replace(input, "\n", "", -1)  // find by myself
 	input = strings.TrimSpace(input) // delete space
-	//fmt.Println("[D] handled input info: ", input)
-	//grade, err := strconv.ParseInt(input, 10, 32) // find by myself
+
 	grade, err := strconv.ParseFloat(input, 64)
 	if err != nil {
 		log.Fatal(err)
@@ -47,13 +35,10 @@ func main() {
 
 	var status string
 	if grade == 100 {
-		//fmt.Println("Perfect!")
 		status = "perfect"
 	} else if grade >= 60 {
-		//fmt.Println("You pass!")
 		status = "pass"
 	} else {
-		//fmt.Println("You fail!")
 		status = "failing"
 	}
 	fmt.Println("A grade of",grade, "is", status)
