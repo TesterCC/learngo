@@ -2,6 +2,12 @@
 
 ![Black Hat Go](https://cdn.jsdelivr.net/gh/TesterCC/pic_bed/img/20200325234257.png)
 
+- [Black Hat Go](https://nostarch.com/blackhatgo)
+
+## Code
+
+- [Black Hat Go - Code](https://github.com/blackhat-go/bhg/)
+
 ### 关键知识笔记
 
 P6-7  
