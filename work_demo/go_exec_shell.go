@@ -11,6 +11,15 @@ import (
 use exec package to run shell command
 ref:
 https://mp.weixin.qq.com/s/yitQcfP9KEmwvViL-1K5wA
+https://blog.csdn.net/EDDYCJY/article/details/119122269
+
+on server:
+go build -o go_exec_shell go_exec_shell.go
+dlv --listen=:2345 --headless=true --api-version=2 exec ./go_exec_shell
+
+on dev machine:
+use goland remote debug
+
 
 go tool dist list   // display OS and ARCH composition
 */
