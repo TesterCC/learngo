@@ -10,6 +10,7 @@ import (
 
 // ref: https://www.cnblogs.com/Yellow0-0River/p/7543869.html
 // 在浏览器里输入http://127.0.0.1:8080即可浏览文件，这些文件正是当前目录在HTTP服务器上的映射目录。
+// 复杂功能参考：https://github.com/projectdiscovery/simplehttpserver
 
 func getCurrentPath() string {
 	s, _ := exec.LookPath(os.Args[0])
