@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-type ServerConfig struct {
+type ServerConfigS struct {
 	ip   string
 	port int
 }
@@ -15,7 +15,7 @@ type ServerConfig struct {
 type Config struct {
 	InitTime     string
 	Cm           string
-	ServerConfig ServerConfig
+	ServerConfig ServerConfigS
 	Other        []string
 }
 
@@ -34,8 +34,8 @@ func main() {
 
 	// go 写入的 json，key 与 value 是和我们的写入数据结构体中的成员名与其值相对应的。
 	info := []Config{
-		{"04:00", "192.168.100.101", ServerConfig{"192.168.100.102", 8080}, []string{}},
-		{"14:00", "192.168.101.101", ServerConfig{"192.168.101.102", 8080}, []string{"string-test-1", "string-test-2"}},
+		{"04:00", "192.168.100.101", ServerConfigS{"192.168.100.102", 8080}, []string{}},
+		{"14:00", "192.168.101.101", ServerConfigS{"192.168.101.102", 9999}, []string{"string-test-1", "string-test-2"}},
 	}
 
 	// create a new json file

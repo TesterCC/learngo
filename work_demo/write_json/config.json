@@ -1,17 +1,1 @@
-[
-  {
-    "InitTime": "04:00",
-    "Cm": "192.168.100.101",
-    "ServerConfig": {},
-    "Other": []
-  },
-  {
-    "InitTime": "14:00",
-    "Cm": "192.168.101.101",
-    "ServerConfig": {},
-    "Other": [
-      "string-test-1",
-      "string-test-2"
-    ]
-  }
-]
+[{"InitTime":"04:00","Cm":"192.168.100.101","ServerConfig":{},"Other":[]},{"InitTime":"14:00","Cm":"192.168.101.101","ServerConfig":{},"Other":["string-test-1","string-test-2"]}]
