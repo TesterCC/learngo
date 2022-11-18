@@ -14,7 +14,7 @@ go build -ldflags "-w -s" xxx.go
 go build编译时可以通过指定GOOS和GOARCH参数来编译指定系统和架构的可执行文件
 e.g.:
 
- GOOS="linux" GOARCH="amd64" go build c1_demo.go
+GOOS="linux" GOARCH="amd64" go build c1_demo.go
 
 file检测：
 c1_demo: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
