@@ -5,7 +5,7 @@ import (
 	"net"
 )
 
-// P26-27  use goroutine
+// P26-27  use goroutine - A scanner
 func main() {
 	var target = "testphp.vulnweb.com"
 
