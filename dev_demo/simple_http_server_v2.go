@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -14,7 +15,7 @@ type Options struct {
 }
 
 // Version is the current version
-const Version = `0.1.20221118`
+const Version = `0.2.20221118`
 
 func showBanner() {
 	fmt.Printf("Custom Simple HTTP Server, version: %s.\n", Version)
@@ -61,12 +62,15 @@ func main() {
 	//err := http.ListenAndServe(":8080", nil)
 	err := http.ListenAndServe(options.ListenAddress, nil)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln(err)
 		panic(err)
 	}
 }
-
+// go cross compiling
 // GOOS="linux" GOARCH="amd64" go build simple_http_server.go
 //默认go build包含debug信息和符号表，减少生成二进制文件大小约30%的方法
 // go build -ldflags "-w -s" xxx.go
-// GOOS="linux" GOARCH="amd64" go build -ldflags "-w -s" simple_http_server_v2.go
+
+// 交叉编译+减少文件大小
+// GOOS="linux" GOARCH="amd64" go build -o shs -ldflags "-w -s" simple_http_server_v2.go
+
