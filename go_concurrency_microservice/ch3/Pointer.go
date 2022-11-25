@@ -22,7 +22,7 @@ func main() {
 	strPtrPtr := &strPtr
 	fmt.Printf("strPtrPtr type is %T, and value is %v\n", strPtrPtr, strPtrPtr)
 
-	// 获取指针对应变量的值     & 取址    * 取值
+	// 获取指针对应变量的值     & 取址    * 取值,指针
 	// 赋值过程中发生了值拷贝，值拷贝会创建新的内存空间，然后将原有变量的值复制到新的内存空间中，形成两个独立的变量。
 	newStr := *strPtr
 	fmt.Printf("newStr type is %T, and value is %v, address is %p\n", newStr, newStr, &newStr)

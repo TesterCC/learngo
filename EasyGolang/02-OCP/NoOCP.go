@@ -23,7 +23,7 @@ func (b *Banker) Pay() {
 }
 
 func main() {
-	// & 取址    * 取值
+	// & 取址    * 指针
 	banker := &Banker{}
 
 	banker.Save()

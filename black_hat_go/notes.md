@@ -8,7 +8,26 @@
 
 - [Black Hat Go - Code](https://github.com/blackhat-go/bhg/)
 
+### Golang Debug
+
+- [Golang修养之路](https://www.yuque.com/aceld/golang/ga6pb1)
+
+```
+test cmd: time go run 2-4_tcp-scanner-too-fast.go
+
+time是Unix/Linux内置多命令，使用时一般不用传过多参数，直接跟上需要调试多程序即可。
+- real：从程序开始到结束，实际度过的时间；
+- user：程序在用户态度过的时间；
+- sys：程序在内核态度过的时间。
+
+一般情况下 real >= user + sys，因为系统还有其它进程(切换其他进程中间对于本进程会有空白期)。
+
+```
+
 ### 关键知识笔记
+
+scanner target: `scanme.nmap.org`
+scanner target: `testphp.vulnweb.com`
 
 P6-7  
 ```
