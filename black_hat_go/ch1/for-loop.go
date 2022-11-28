@@ -9,6 +9,7 @@ func main() {
 		fmt.Println(i)
 	}
 
+	// 初始化一个整数切片 nums
 	nums := []int{2, 4, 6, 8}
 	for idx, val := range nums {
 		fmt.Println(idx, val)
