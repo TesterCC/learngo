@@ -15,6 +15,7 @@ var (
 
 /*
 go cross compiling
+ref: https://go.dev/doc/install/source#environment
 ref: https://www.jianshu.com/p/3ff21f818182
 
 windows cross compile linux elf, default is windows exe
