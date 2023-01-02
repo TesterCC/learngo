@@ -26,6 +26,9 @@ time是Unix/Linux内置多命令，使用时一般不用传过多参数，直接
 
 ### 关键知识笔记
 
+为何Go语言中并没有形成一种统一的用于处理和记录错误的最佳方法？
+- Go的内置错误类型没有隐式包含堆栈跟踪以帮助查明错误的上下文或位置。
+
 scanner target: `scanme.nmap.org`
 scanner target: `testphp.vulnweb.com`
 
