@@ -8,6 +8,7 @@ import (
 )
 
 // 2-9 gin基础：获取请求参数 - 获取body内容  https://www.imooc.com/video/20185
+// get form data
 
 // curl测试传入body
 // curl -X POST "http://127.0.0.1:7777/test" -d '{"name":"get_body_param"}'
