@@ -6,7 +6,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.7.0
 	github.com/StackExchange/wmi v0.0.0-20210224194228-fe8f1750fd46 // indirect
 	github.com/astaxie/beego v1.12.1
-	github.com/gin-gonic/gin v1.7.2
+	github.com/gin-gonic/gin v1.7.7
 	github.com/go-ole/go-ole v1.2.5 // indirect
 	github.com/go-playground/validator/v10 v10.8.0 // indirect
 	github.com/go-sql-driver/mysql v1.6.0
