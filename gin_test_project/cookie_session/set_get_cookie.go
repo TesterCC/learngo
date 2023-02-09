@@ -19,6 +19,9 @@ cookie 是存储浏览器中的键值对，可以让我们用同一个浏览器�
 testcase:
 http://127.0.0.1:8080/set_cookie
 http://127.0.0.1:8080/get_cookie
+
+一个更优雅的实现：
+https://blog.csdn.net/weixin_45698935/article/details/122777263
 */
 
 func main() {
