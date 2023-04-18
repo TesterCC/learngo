@@ -13,7 +13,9 @@ var (
 	addr string
 )
 
-// CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o gws web_shell.go
+// 6.1m - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o gws web_shell.go
+// 4.3m - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o gws2 web_shell.go
+// -s 的作用是去掉符号信息; -w 的作用是去掉调试信息
 
 func main() {
 	if len(os.Args) !=2  {
