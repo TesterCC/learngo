@@ -16,6 +16,8 @@ var (
 // 6.1m - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o gws web_shell.go
 // 4.3m - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o gws2 web_shell.go
 // -s 的作用是去掉符号信息; -w 的作用是去掉调试信息
+// method2: 用upx进一步压缩 upx -9 -o ./gws_upx ./gws
+// method3: 用GccGo进行编译
 
 func main() {
 	if len(os.Args) !=2  {
