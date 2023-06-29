@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"time"
 )
-// 3-1
-// 3-2 todo https://www.imooc.com/video/24258
+
+// 3-1 basic function
+
 func main() {
 	timeDuration := 7
 	fmt.Printf("倒计时：%d 秒\n", timeDuration)
