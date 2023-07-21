@@ -41,9 +41,12 @@ func main() {
 	//// insert one data
 	//insertDoc(client, ctx)
 
-	// insert custom one data
-	insertData := bson.M{"name": "Christine", "gender": "female"}
-	insertOneDoc(client, ctx, insertData)
+	//// insert custom one data
+	//insertData := bson.M{"name": "Christine", "gender": "female"}
+	//insertOneDoc(client, ctx, insertData)
+
+	// insert many
+	insertMany(client, ctx)
 
 	// disconnect conn
 	defer func() {
@@ -73,7 +76,7 @@ func insertDoc(client *mongo.Client, ctx context.Context) {
 
 // extend, can use in work
 func insertOneDoc(client *mongo.Client, ctx context.Context, bsonData bson.M) {
-	// connection db and col
+	// connect db and col
 	col := client.Database("test").Collection("insertonetest")
 
 	// insert one data
@@ -88,9 +91,41 @@ func insertOneDoc(client *mongo.Client, ctx context.Context, bsonData bson.M) {
 	fmt.Println("id: ", insertOneRet.InsertedID)
 }
 
-
 // insert many data
-func insertMany(client *mongo.Client, ctx context.Context)  {
-	//  connect
+func insertMany(client *mongo.Client, ctx context.Context) {
+	// connect db and col
+	col := client.Database("test").Collection("insertmanytest")
+
+	// define multi-lines slice
+	docs := []interface{}{
+		bson.M{"name": "test00", "gender": "male"},
+		bson.M{"name": "test01", "gender": "female"},
+		bson.M{"name": "test02", "gender": "male"},
+	}
+
+	// 自定应是否顺序写入，默认是true，如果写入多行数据时有一行报错，就会中断写入；如果是false时，会跳过报错，后面的继续执行。
+	insertManyOpts := options.InsertMany().SetOrdered(false)
+
+	// insert many lines
+	insertManyResult, err := col.InsertMany(ctx, docs, insertManyOpts)
+
+	//  error judgement
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// output all wriet _id
+	fmt.Println("ids: ", insertManyResult.InsertedIDs)
+
+}
+
+
+// modify data
+func updateData(client *mongo.Client, ctx context.Context) {
+	// connect db and col
+	col := client.Database("test").Collection("insertmanytest")
+
+	// 如果过滤的文档不存在，则插入新的文档
+
 
 }
