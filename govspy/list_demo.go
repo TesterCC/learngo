@@ -9,7 +9,7 @@ func main() {
 	var numbers [5]int // becomes [0, 0, 0, 0, 0]
 	// change one of them
 	numbers[2] = 100
-	fmt.Println(numbers) // [0, 0, 100, 0, 0]
+	//fmt.Println(numbers) // [0, 0, 100, 0, 0]
 
 	// create a new slice from an array
 	some_numbers := numbers[1:3]
@@ -30,4 +30,5 @@ func main() {
 	things[0] = "Peter"
 	things[1] = "Anders"
 	fmt.Println(len(things)) // 100
+	//fmt.Println(things) // [Peter Anders                                                                                                  ]
 }
