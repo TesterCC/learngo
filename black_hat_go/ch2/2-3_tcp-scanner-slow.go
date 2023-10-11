@@ -7,7 +7,7 @@ import (
 )
 
 // same to 2-2_for-loop-port-scanner.go
-// P26  然而大部分网站是拒绝响应的，只有几个常用测试站点可用
+// P26  然而大部分网站是拒绝响应的，只有几个常用测试站点可用 -- 单线程扫描，低效
 //var Target = "scanme.nmap.org"
 var Target = "testphp.vulnweb.com"
 
