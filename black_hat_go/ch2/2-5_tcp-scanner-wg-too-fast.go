@@ -18,13 +18,14 @@ issue: 如果多次运行或在不同机器执行可能得到不一致的结果�
 const target2 = "scanme.nmap.org"
 
 func main() {
-
+    // WaitGroup是一种结构体，创建后可以在此结构体上调用一些方法
 	var wg sync.WaitGroup  // step 1 创建了用作同步计数的sync.WaitGroup
 
 	for i:=1;i<=512;i++ {
+		// 按所提供的数字递增内部计数器
 		wg.Add(1)   // step 2 每次创建扫描端口的goroutine时，通过wg.Add(1)递增计数器的值
 		go func(j int){
-			defer wg.Done()   // step 3 且defer语句调用wg.Done()，每当执行完后就使计数器的值递减
+			defer wg.Done()   // step 3 且defer语句调用wg.Done()，每当执行完后就使计数器的值递减， 即计数器减1
 			address := fmt.Sprintf(target2 +":%d", j)
 			fmt.Println(address)
 			conn, err := net.Dial("tcp", address)
@@ -35,6 +36,6 @@ func main() {
 			fmt.Printf("%d open\n",j)
 		}(i)
 	}
-	wg.Wait()  // step4 main()函数调用wg.Wait()，等待所有的goroutine执行完，且计数器的值归0
+	wg.Wait()  // step4 main()函数调用wg.Wait()，会阻止调用它goroutine执行，等待所有的goroutine执行完，在内部计数器的值归0前将不允许进一步执行。
 	fmt.Println("[-] Scanner end ...")
 }
