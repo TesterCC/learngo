@@ -8,6 +8,26 @@
 
 - [Black Hat Go - Code](https://github.com/blackhat-go/bhg/)
 
+## After install go
+```shell
+安装后的设置：
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+```
+
+## Install libpcap
+
+- Ubuntu/Kali：`apt-get install libpcap-dev`
+- CentOS7：`sudo yum install libpcap-devel`
+- MacOS: `brew xxx`
+- Windows: install winpcap (https://www.winpcap.org)
+- 
+## Wiki
+
+### PCAP-FILTER MAN PAGE
+
+https://www.tcpdump.org/manpages/pcap-filter.7.html
+
 ### Golang Debug
 
 - [Golang修养之路](https://www.yuque.com/aceld/golang/ga6pb1)
