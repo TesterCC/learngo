@@ -44,7 +44,7 @@ type Person struct {
 
 /*
 gin的BindJSON和ShouldBindJSON，ShouldBindWith的区别
-1.解析错误回在header中写一个400的状态码
+1.解析错误时，会在header中写一个400的状态码
 //内部根据Content-Type去解析
 c.Bind(obj interface{})
 //内部替你传递了一个binding.JSON，对象去解析
