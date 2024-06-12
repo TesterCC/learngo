@@ -55,7 +55,7 @@ func main() {
 			// 因为gorilla/websocket库的WriteMessage方法接收一个字节切片作为消息参数，你需要先将前缀和接收到的消息组合成一个新的字符串，然后将这个字符串转换为字节切片。
 			// Echo the received message back to the client.
 			// 组合消息，加上前缀 "Received data: "
-			responseMessage := "Received data: " + string(p)
+			responseMessage := "Message text was: " + string(p)
 
 			if err := conn.WriteMessage(messageType, []byte(responseMessage)); err != nil {
 				return // Again, handles errors in an easy way.

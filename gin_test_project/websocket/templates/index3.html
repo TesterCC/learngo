@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gin Gorilla Websocket Chat</title>
+    <title>Gin Gorilla Websocket Chat V3</title>
 </head>
 <body>
 <h1>WebSocket Chat</h1>
+<h2>Your ID: <span id="ws-id"></span></h2>
 <form action="" onsubmit="sendMessage(event)">
     <input type="text" id="messageText" autocomplete="off"/>
     <button>Send</button>
 </form>
 <ul id='messages'>
 </ul>
+</body>
 <script>
-    var ws = new WebSocket("ws://localhost:8000/ws");
+    var client_id = Date.now()
+    document.querySelector("#ws-id").textContent = client_id;
+    // console.log(client_id); // debug use
+    // var ws = new WebSocket(`ws://localhost:8000/ws/${client_id}`);  // gin load html cause error by ``
+    var wsUrl = "ws://localhost:8000/ws/" + client_id;
+    var ws = new WebSocket(wsUrl);
+
     ws.onmessage = function(event) {
         var messages = document.getElementById('messages')
         var message = document.createElement('li')
@@ -27,5 +35,4 @@
         event.preventDefault()
     }
 </script>
-</body>
 </html>
