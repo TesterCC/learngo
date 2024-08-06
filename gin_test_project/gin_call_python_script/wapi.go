@@ -7,11 +7,19 @@ import (
 	"os/exec"
 )
 
-type RequestParams struct {
-	TaskId  string `json:"task_id"`
-	Dir  string `json:"dir"`
-	Path  string `json:"path"`
+type RequestParamsV2 struct {
+		TaskId  string `json:"i"`
+		Dir  string `json:"d"`
+		Path  string `json:"f"`
 }
+
+
+
+//type RequestParams struct {
+//	TaskId  string `json:"task_id"`
+//	Dir  string `json:"dir"`
+//	Path  string `json:"path"`
+//}
 
 // because the api is simple, use gin directly
 /*
@@ -58,7 +66,7 @@ func main() {
 
 
 	r.POST("/executeCmd", func(c *gin.Context) {
-		var params RequestParams
+		var params RequestParamsV2
 		if err := c.BindJSON(&params); err!= nil {
 			c.JSON(400, gin.H{"error": "Invalid JSON data"})
 			return
