@@ -22,6 +22,7 @@ type JsonRespStruct struct {
 	Data interface{} `json:"data"`
 }
 
+
 func ReturnResp(c *gin.Context, code int, msg interface{}, data interface{}) {
 	jsonData := &JsonRespStruct{Code: code, Msg: msg, Data: data}
 	c.JSON(http.StatusOK, jsonData)
@@ -94,15 +95,21 @@ func main() {
 		}
 
 		// run cmd
+		//pyCompiler := "/opt/tools/apt_parser/apt-env/bin/python3"  // debug use in dev vm
+		pyCompiler := "/usr/bin/python3"   // release use docker
+
 		var cmd *exec.Cmd
 		if params.Statistics {
 			// only get rule info use
-			cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
+			//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
+			cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
 		} else {
 			if params.Dir != "" {
-				cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+				//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
 			} else if params.File != "" {
-				cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
+				//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
+				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
 			} else {
 				ReturnResp(c, http.StatusBadRequest, "some args empty", nil)
 				return
@@ -111,14 +118,14 @@ func main() {
 
 		//cmd := exec.Command("python -W ignore", "cli.py", "-i", params.TaskId, "-d", params.Dir, "-f", params.Path)
 		output, err := cmd.CombinedOutput()
-		//fmt.Println("[D] execute cmd: ", string(output)) // only debug use, bytes to string use string()
+		fmt.Println("[D] execute cmd: ", string(output)) // only debug use, bytes to string use string()
 		if err != nil {
 			ReturnResp(c, http.StatusInternalServerError, err.Error(), nil)
 			return
 		}
 
 		// output json
-		var data interface{}
+		var data JsonRespStruct
 		err = json.Unmarshal(output, &data)
 		if err != nil {
 			//c.JSON(500, gin.H{"error": err.Error()})
@@ -126,9 +133,9 @@ func main() {
 			return
 		}
 		//c.JSON(200, data)
-		ReturnResp(c, 1,"success", data)
+		ReturnResp(c, 1,"success", data.Data)
 		return
 	})
 
-	r.Run(":7777")
+	r.Run("0.0.0.0:7777")
 }
