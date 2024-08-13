@@ -95,8 +95,8 @@ func main() {
 		}
 
 		// run cmd
-		//pyCompiler := "/opt/tools/apt_parser/apt-env/bin/python3"  // debug use in dev vm
-		pyCompiler := "/usr/bin/python3"   // release use docker
+		//pyCompiler := "/opt/tools/apt_parser/apt-env/bin/python3"  // deprecated, debug use in dev vm venv
+		pyCompiler := "/usr/bin/python3"   // release use
 
 		var cmd *exec.Cmd
 		if params.Statistics {
@@ -137,5 +137,8 @@ func main() {
 		return
 	})
 
+	// add version info print for checking
+	gapiVersion := "0.1.0.20240809"
+	fmt.Println("[Dev] current gapi version: ", gapiVersion)
 	r.Run("0.0.0.0:7777")
 }
