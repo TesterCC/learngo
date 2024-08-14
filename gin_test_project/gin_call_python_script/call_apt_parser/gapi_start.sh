@@ -1,5 +1,5 @@
 #!/bin/bash
 
-chmod +x gapi
+chmod +x ./gapi
 ./gapi
 #echo -e "Start to gapi ...\n"
