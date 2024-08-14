@@ -137,8 +137,31 @@ func main() {
 		return
 	})
 
+	r.GET("/CheckRule", func(c *gin.Context) {
+		pyCompiler := "/usr/bin/python3"   // release use
+
+		var cmd *exec.Cmd
+
+		// just check rule
+		cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-c")
+
+		output, err := cmd.CombinedOutput()
+		fmt.Println("[D] execute cmd: ", string(output)) // only debug use, bytes to string use string()
+
+		// output json
+		var data JsonRespStruct
+		err = json.Unmarshal(output, &data)
+		if err != nil {
+			//c.JSON(500, gin.H{"error": err.Error()})
+			ReturnResp(c, http.StatusInternalServerError, err.Error(), nil)
+			return
+		}
+		ReturnResp(c, 1,"success", data.Data)
+		return
+	})
+
 	// add version info print for checking
-	gapiVersion := "0.1.0.20240809"
+	gapiVersion := "0.1.1.20240814"
 	fmt.Println("[Dev] current gapi version: ", gapiVersion)
 	r.Run("0.0.0.0:7777")
 }
