@@ -1,0 +1,71 @@
+{
+  "task_id": "1234567",
+  "analysis_info": [
+    {
+      "file_name": "NjRAT",
+      "hashes": {
+        "CRC32": "0x866612a1",
+        "MD5": "6739d2ceff6676687413e8d582cf9a9c",
+        "SHA-1": "f36f713c1e84109fe56d22e55a698d0c323eca8a",
+        "SHA-224": "c981f9feaade7ffeaee38a8595e109dec25efa0e180ffd9fd43df8df",
+        "SHA-256": "d537397bc41f0a1cb964fa7be6658add5fe58d929ac91500fc7770c116d49608",
+        "SHA-384": "19d5a2a2b1b23dd8c8c05a6a8df645567bbdffa6d83d60c62dd313f7cf03e7ec744279a12b6df2147d8fe1a596a2d63e",
+        "SHA-512": "1f17f471b64bbb383e5b69d489a379dc2e6e2eef4cd8151fd15a5a3b50188a21657fcfbb8a9a92d88bcf20e35d37789157032b8c8b06f64dbe7d1027e168c1c9",
+        "SSDEEP": "768:lY3OknD9O/pBcxYsbae6GIXb9pDX2t98PL0OXLeuXxrjEtCdnl2pi1Rz4Rk3KsGx:JkxOx6baIa9RZj00ljEwzGi1dDmDVgS"
+      },
+      "id": 1723711646328,
+      "magic": "PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows",
+      "mime_type": "application/x-dosexec",
+      "scan_info": {
+        "arch": "x86",
+        "is_dll": false,
+        "is_exe": true
+      },
+      "signature": "NjRAT",
+      "simple_type": "pe",
+      "size": "93.0 KB (95232 bytes)",
+      "threat_description": "NjRat - Remote Access Trojan",
+      "yara": [
+        "disable_dep",
+        "keylogger",
+        "Windows_Trojan_Njrat_30f3c220",
+        "Windows_Trojan_Njrat_eb2698d2",
+        "NjRat"
+      ],
+      "yara_threat": [
+        "trojan"
+      ]
+    },
+    {
+      "file_name": "report.json",
+      "hashes": {
+        "CRC32": "0xcc773d54",
+        "MD5": "aab801254e86fc70796c8391433bfad1",
+        "SHA-1": "1ecf1437ed9ad29600905cf8239367497807a43f",
+        "SHA-224": "46730c945bd80fd60e87a8d94ae62def321c8f6897bebea475c66890",
+        "SHA-256": "da6ee527870b00166f019988d8b4edf1cfa7fe6d227a6dc0af2ef83093975a9a",
+        "SHA-384": "775a60463032ca615c2551cbbc6f652b2a26dd51b58048c9fdc692174beaa689834aef55f9cd9f3f2a75d2971fc21911",
+        "SHA-512": "bb994b48bc17291d8d23ccad1e1b9fbaa1fb21de1acc13ba2ea48b70c69c74d8ab348008a2a54547677ac6e0818586b15cd9106ce56768c69a5f1b8c2a16cecd",
+        "SSDEEP": "48:PYTz18Mi9ac4GXXz41BCe5NqVMI2rx65vviK7:POh8Mi9/4oX01xOvvh7"
+      },
+      "id": 1723711646754,
+      "magic": "ASCII text",
+      "mime_type": "text/plain",
+      "signature": "",
+      "simple_type": "unknown",
+      "size": "1.83 KB (1871 bytes)",
+      "threat_description": "",
+      "yara": [],
+      "yara_threat": []
+    }
+  ],
+  "apt_info": [
+    {
+      "apt": "APT-C-36",
+      "file_ids": [
+        1723711646328
+      ],
+      "match_rate": "20.00%"
+    }
+  ]
+}

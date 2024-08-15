@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"net/http"
 	"os/exec"
 )
@@ -22,6 +23,11 @@ type JsonRespStruct struct {
 	Data interface{} `json:"data"`
 }
 
+//type TaskResultStruct struct {
+//	TaskID       string         `json:"task_id"`
+//	AnalysisInfo []string `json:"analysis_info"`
+//	APTInfo      []string `json:"apt_info"`
+//}
 
 func ReturnResp(c *gin.Context, code int, msg interface{}, data interface{}) {
 	jsonData := &JsonRespStruct{Code: code, Msg: msg, Data: data}
@@ -64,8 +70,17 @@ func Cors() gin.HandlerFunc {
 	}
 }
 
+func readFile(path string) ([]byte, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		//fmt.Println("[E] read file failed:", err)
+		return nil, err
+	}
+	return data, nil
+}
+
 func main() {
-	r := gin.Default()   // gin.Default() 会创建一个带有一些默认中间件（如 Logger 和 Recovery 中间件）的 Gin 引擎实例。
+	r := gin.Default() // gin.Default() 会创建一个带有一些默认中间件（如 Logger 和 Recovery 中间件）的 Gin 引擎实例。
 	//r := gin.New()     // gin.New() 创建的是一个不包含这些默认中间件的 Gin 引擎实例。
 	//r.Use(gin.Logger())
 	//r.Use(gin.Recovery())
@@ -96,7 +111,7 @@ func main() {
 
 		// run cmd
 		//pyCompiler := "/opt/tools/apt_parser/apt-env/bin/python3"  // deprecated, debug use in dev vm venv
-		pyCompiler := "/usr/bin/python3"   // release use
+		pyCompiler := "/usr/bin/python3" // release use
 
 		var cmd *exec.Cmd
 		if params.Statistics {
@@ -133,12 +148,12 @@ func main() {
 			return
 		}
 		//c.JSON(200, data)
-		ReturnResp(c, 1,"success", data.Data)
+		ReturnResp(c, 1, "success", data.Data)
 		return
 	})
 
 	r.GET("/CheckRule", func(c *gin.Context) {
-		pyCompiler := "/usr/bin/python3"   // release use
+		pyCompiler := "/usr/bin/python3" // release use
 
 		var cmd *exec.Cmd
 
@@ -156,12 +171,62 @@ func main() {
 			ReturnResp(c, http.StatusInternalServerError, err.Error(), nil)
 			return
 		}
-		ReturnResp(c, 1,"success", data.Data)
+		ReturnResp(c, 1, "success", data.Data)
+		return
+	})
+
+	r.GET("/TaskResult", func(c *gin.Context) {
+
+		//id := c.Param("id")  // "/find/:id"
+		taskId := c.Query("ID") // /find?id=xxx
+		fmt.Println("[D] input task id is: ", taskId)
+		//fmt.Printf("[D] args type: %T\n ", taskId)  // string
+
+		taskResultPath := fmt.Sprintf("/opt/tools/results/%s/result.json", taskId)  // release use it
+		//taskResultPath := fmt.Sprintf("./results/%s/result.json", taskId) // local dev use
+		fmt.Printf("[D] task result file path: %s\n", taskResultPath)
+
+		// read json
+		output, err := readFile(taskResultPath)
+		//fmt.Printf(">>>>>: %T\n", output)   // debug  []uint8
+		fmt.Println("[D] read json content:\n", string(output)) // debug print
+
+		if err != nil {
+			fmt.Println("[E] json read error:", err)
+			ReturnResp(c, http.StatusInternalServerError, err.Error(), nil)
+			return
+		}
+
+		// attention: 直接将 JSON 数据解析到一个 map[string]interface{} 中，不需要事先定义结构体
+		var data map[string]interface{}
+		err2 := json.Unmarshal(output, &data)
+
+		// // test pass, can get data
+		//value, ok := data["analysis_info"]
+		//if ok {
+		//	fmt.Println(">>> get value: ", value)
+		//}
+		// // test end
+
+		if err2 != nil {
+			fmt.Println("[E] json parse error:", err)
+			ReturnResp(c, http.StatusInternalServerError, err.Error(), nil)
+			return
+		}
+
+		ReturnResp(c, 1, "success", data)
 		return
 	})
 
 	// add version info print for checking
-	gapiVersion := "0.1.1.20240814"
-	fmt.Println("[Dev] current gapi version: ", gapiVersion)
-	r.Run("0.0.0.0:7777")
+	gapiVersion := "0.2.0.20240815"
+	gapiListenIP := "0.0.0.0"
+	gapiListenPort := 7777
+
+	launchServer := fmt.Sprintf("%s:%d", gapiListenIP, gapiListenPort)
+
+	fmt.Println("[DEV] current gapi version: ", gapiVersion)
+	fmt.Println("[DEV] current gapi server: ", launchServer)
+
+	r.Run(launchServer)
 }
