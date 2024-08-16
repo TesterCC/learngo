@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"os/exec"
 )
 
@@ -79,6 +80,14 @@ func readFile(path string) ([]byte, error) {
 	return data, nil
 }
 
+func fileExists(filePath string) bool {
+	_, err := os.Stat(filePath)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return err == nil
+}
+
 func main() {
 	r := gin.Default() // gin.Default() 会创建一个带有一些默认中间件（如 Logger 和 Recovery 中间件）的 Gin 引擎实例。
 	//r := gin.New()     // gin.New() 创建的是一个不包含这些默认中间件的 Gin 引擎实例。
@@ -106,7 +115,6 @@ func main() {
 		// first check
 		if params.TaskId == "" {
 			ReturnResp(c, http.StatusBadRequest, "task id is empty", nil)
-			return
 		}
 
 		// run cmd
@@ -119,9 +127,20 @@ func main() {
 			//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
 			cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
 		} else {
+			// example: nohup /usr/bin/python3 /opt/root_node/main.py > /opt/a.log 2>&1 &
 			if params.Dir != "" {
-				//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
-				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+				//cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+				// attention
+				cmd = exec.Command(pyCompiler,"-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+
+				// cmd.Start() 用于启动一个命令并立即返回，命令在后台异步执行，不会阻塞当前程序的执行
+				AsyncErr := cmd.Start()
+				if AsyncErr != nil {
+					ReturnResp(c, http.StatusInternalServerError, "run time error, please check input cmd", nil)
+				}
+				ReturnResp(c, 1, "success", nil)
+				return
+
 			} else if params.File != "" {
 				//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
 				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
@@ -186,7 +205,13 @@ func main() {
 		//taskResultPath := fmt.Sprintf("./results/%s/result.json", taskId) // local dev use
 		fmt.Printf("[D] task result file path: %s\n", taskResultPath)
 
-		// read json
+		// 1. check file exist
+		if !fileExists(taskResultPath) {
+			ReturnResp(c, http.StatusInternalServerError, "file does not exist", nil)
+			return
+		}
+
+		// 2. read json
 		output, err := readFile(taskResultPath)
 		//fmt.Printf(">>>>>: %T\n", output)   // debug  []uint8
 		fmt.Println("[D] read json content:\n", string(output)) // debug print
@@ -219,7 +244,7 @@ func main() {
 	})
 
 	// add version info print for checking
-	gapiVersion := "0.2.0.20240815"
+	gapiVersion := "0.2.1.20240816"
 	gapiListenIP := "0.0.0.0"
 	gapiListenPort := 7777
 

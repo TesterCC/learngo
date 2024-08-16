@@ -23,8 +23,8 @@ func main() {
 	fmt.Println("[D] result file path: ", directory)
 
 	if fileExists(resultFilePath) {
-		fmt.Println("[I] file is exist.")
+		fmt.Println("[I] file exist.")
 	} else {
-		fmt.Println("[I] file isn't exist.")
+		fmt.Println("[I] file does not exist.")
 	}
 }
