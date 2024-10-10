@@ -207,7 +207,9 @@ func main() {
 
 		// 1. check file exist
 		if !fileExists(taskResultPath) {
-			ReturnResp(c, http.StatusInternalServerError, "file does not exist", nil)
+			// 20241009,backend need return success status code 1, but data use nil
+			//ReturnResp(c, http.StatusInternalServerError, "file does not exist", nil)
+			ReturnResp(c, 1, "file does not exist", nil)
 			return
 		}
 
@@ -244,7 +246,7 @@ func main() {
 	})
 
 	// add version info print for checking
-	gapiVersion := "0.2.1.20240816"
+	gapiVersion := "0.2.2.20241009"
 	gapiListenIP := "0.0.0.0"
 	gapiListenPort := 7777
 
