@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -115,6 +116,7 @@ func main() {
 		// first check
 		if params.TaskId == "" {
 			ReturnResp(c, http.StatusBadRequest, "task id is empty", nil)
+			return
 		}
 
 		// run cmd
@@ -122,28 +124,43 @@ func main() {
 		pyCompiler := "/usr/bin/python3" // release use
 
 		var cmd *exec.Cmd
+
 		if params.Statistics {
 			// only get rule info use
 			//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
 			cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-s")
+			// current cmd run in line 170
 		} else {
 			// example: nohup /usr/bin/python3 /opt/root_node/main.py > /opt/a.log 2>&1 &
 			if params.Dir != "" {
 				//cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
 				// attention
-				cmd = exec.Command(pyCompiler,"-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
+				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-d", params.Dir)
 
 				// cmd.Start() 用于启动一个命令并立即返回，命令在后台异步执行，不会阻塞当前程序的执行
 				AsyncErr := cmd.Start()
 				if AsyncErr != nil {
 					ReturnResp(c, http.StatusInternalServerError, "run time error, please check input cmd", nil)
+					return
+				} else {
+					ReturnResp(c, 1, "success", nil)
+					return
 				}
-				ReturnResp(c, 1, "success", nil)
-				return
 
 			} else if params.File != "" {
 				//cmd = exec.Command("/opt/tools/apt_parser/apt-env/bin/python3", "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
 				cmd = exec.Command(pyCompiler, "-W ignore", "/opt/tools/apt_parser/cli.py", "-i", params.TaskId, "-f", params.File)
+
+				// cmd.Start() 用于启动一个命令并立即返回，命令在后台异步执行，不会阻塞当前程序的执行 fixme 这里代码有复用，待优化
+				AsyncErr := cmd.Start()
+				if AsyncErr != nil {
+					ReturnResp(c, http.StatusInternalServerError, "run time error, please check input cmd", nil)
+					return
+				} else {
+					ReturnResp(c, 1, "success", nil)
+					return
+				}
+
 			} else {
 				ReturnResp(c, http.StatusBadRequest, "some args empty", nil)
 				return
@@ -201,7 +218,7 @@ func main() {
 		fmt.Println("[D] input task id is: ", taskId)
 		//fmt.Printf("[D] args type: %T\n ", taskId)  // string
 
-		taskResultPath := fmt.Sprintf("/opt/tools/results/%s/result.json", taskId)  // release use it
+		taskResultPath := fmt.Sprintf("/opt/tools/results/%s/result.json", taskId) // release use it
 		//taskResultPath := fmt.Sprintf("./results/%s/result.json", taskId) // local dev use
 		fmt.Printf("[D] task result file path: %s\n", taskResultPath)
 
@@ -246,11 +263,21 @@ func main() {
 	})
 
 	// add version info print for checking
-	gapiVersion := "0.2.2.20241009"
+	gapiVersion := "0.2.3.20241012"
 	gapiListenIP := "0.0.0.0"
 	gapiListenPort := 7777
 
-	launchServer := fmt.Sprintf("%s:%d", gapiListenIP, gapiListenPort)
+	// define cli args
+	// 返回的是指向变量的指针，而不是直接返回变量的值。因此，在使用这些指针时，必须使用*操作符来解引用（dereference）指针，以获取实际的值。
+	ip := flag.String("ip", gapiListenIP, "IP address to listen on")
+	port := flag.Int("port", gapiListenPort, "Port to listen on")
+
+	// parse cli args
+	flag.Parse()
+
+	// print launch app server info
+	// test custom launch: go run gapi.go --ip 127.0.0.1 --port 8888
+	launchServer := fmt.Sprintf("%s:%d", *ip, *port)
 
 	fmt.Println("[DEV] current gapi version: ", gapiVersion)
 	fmt.Println("[DEV] current gapi server: ", launchServer)
