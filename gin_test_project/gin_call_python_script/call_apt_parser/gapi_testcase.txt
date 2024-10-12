@@ -1,0 +1,25 @@
+﻿gapi test：
+1.
+curl -X POST -H "Content-Type: application/json" -d '{"i": "112234", "s": true}' http://0.0.0.0:7777/StartCodeGene
+
+2.
+http://192.168.120.201:7777/TaskResult?ID=34
+curl http://0.0.0.0:7777/TaskResult?ID=115
+
+========================================================================
+
+201测试服务器：
+
+1.完整部署将更新的文件放到：
+/home/sdp-build/codegene下对应目录下，去/home/sdp-start里docker-compose操作
+
+- gapi_web 检测接口 go
+- apt_parser apt检测 python3
+
+
+2.仅测试调试二进制文件：
+将要更新的文件上传到201服务器的 /home/sdp-build/codegene/gapi_web
+
+将gapi上传到容器内部：
+docker cp gapi sdp-codegene:/opt/tools/gapi_web/
+
