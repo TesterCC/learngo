@@ -1,0 +1,13 @@
+{
+    "probing": "127.0.0.1",
+    "probingNum": "6",
+    "controlNum": "9",
+    "identify": "",
+    "controlIp": "127.0.0.1:55555",
+    "tactics": "127.0.0.1",
+    "cm": "",
+    "exploit": "",
+    "pm": "",
+    "verification": "127.0.0.1",
+    "situation": ""
+}
