@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 /*
+https://tour.go-zh.org/flowcontrol/1
+https://go.dev/tour/flowcontrol/1
 
 Go 只有一种循环结构：for 循环。
 
@@ -25,12 +27,11 @@ the init statement;the condition expression;the post statement {}
 
 */
 
-
 func main() {
 
 	sum := 0
 	for i := 0; i < 10; i++ {
 		sum += i
 	}
-	fmt.Println(sum)  // 45
+	fmt.Println(sum) // 45
 }

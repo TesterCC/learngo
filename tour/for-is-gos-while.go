@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 /*
+https://tour.go-zh.org/flowcontrol/3
+https://go.dev/tour/flowcontrol/3
 
-for 是 Go 中的 “while”
-此时你可以去掉分号，因为 C的while 在Go中叫做for。
+for 是 Go 中的「while」
+此时你可以去掉分号，因为 C 的 while 在 Go 中叫做 for。
 
 */
 

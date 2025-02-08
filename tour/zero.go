@@ -4,7 +4,12 @@ import "fmt"
 
 /*
 
-没有明确初始值的变量声明会被赋予它们的 zero value。 也就是以zero value作为默认值
+https://tour.go-zh.org/basics/12
+https://go.dev/tour/basics/12
+
+零值
+
+没有明确初始化的变量声明会被赋予对应类型的 零值。
 
 零值是：
 
