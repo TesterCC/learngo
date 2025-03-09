@@ -1,0 +1,15 @@
+{
+  "database": {
+    "type": "sqlite",
+    "mysql": {
+      "username": "",
+      "password": "",
+      "host": "localhost",
+      "port": "3306",
+      "dbname": "trae_demo"
+    },
+    "sqlite": {
+      "path": "todo.db"
+    }
+  }
+}
