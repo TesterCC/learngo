@@ -3,20 +3,23 @@ package main
 import "fmt"
 
 /*
-http://127.0.0.1:3999/moretypes/6
 https://tour.go-zh.org/moretypes/6
+https://go.dev/tour/moretypes/6
 
 
 数组
-类型 [n]T 表示拥有 n 个 T 类型的值的数组。
+
+类型 [n]T 表示一个数组，它拥有 n 个类型为 T 的值。
 
 表达式
 
 var a [10]int
+
 会将变量 a 声明为拥有 10 个整数的数组。
 
-数组的长度是其类型的一部分，因此数组不能改变大小。
-这看起来是个限制，不过没关系，Go 提供了更加便利的方式来使用数组。
+数组的长度是其类型的一部分，因此 数组不能改变大小。
+
+这看起来是个限制，不过没关系，Go拥有更加方便的使用数组的方式。
 */
 
 func main() {

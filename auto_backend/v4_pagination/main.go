@@ -32,6 +32,7 @@ var db *gorm.DB
 
 // 加载配置文件
 func loadConfig() error {
+	// 配置文件名称 config.json
 	// 设置配置文件名
 	viper.SetConfigName("config")
 	// 设置配置文件类型

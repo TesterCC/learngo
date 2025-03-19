@@ -1,0 +1,17 @@
+uploadserver.go和uploadclient.go实现了完整的断点续传和分片上传功能。
+
+客户端(uploadclient.go或前端)处理逻辑：
+
+1. 首先通过GET请求查询文件上传状态，获取已上传的分片信息
+2. 根据文件大小计算分片数量，并初始化上传进度监控协程
+3. 遍历所有分片，对未上传的分片（uploadChunk[seq]=0）创建协程并发上传
+4. 每个上传协程设置请求头（X-File-Name和Content-Range），发送POST请求上传分片数据
+5. 接收服务端返回的上传进度，通过channel更新显示
+
+服务端(uploadserver.go)处理逻辑：
+
+1. 通过FileInfoCache缓存管理多个文件的上传状态
+2. GET请求处理断点续传查询，返回已上传字节数和分片信息
+3. POST请求处理分片上传，解析Content-Range头获取分片序号、总分片数和文件大小
+4. 将分片内容写入临时目录，更新文件上传状态
+5. 当所有分片上传完成（uploadBytes==totalBytes）时，按序合并所有分片生成最终文件
