@@ -4,8 +4,8 @@ import "fmt"
 
 /*
 
-http://127.0.0.1:3999/moretypes/17
 https://tour.go-zh.org/moretypes/17
+https://go.dev/tour/moretypes/17
 
 可以将下标或值赋予 _ 来忽略它。
 

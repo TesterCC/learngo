@@ -6,8 +6,8 @@ import (
 
 /*
 
-http://127.0.0.1:3999/moretypes/18
 https://tour.go-zh.org/moretypes/18
+https://go.dev/tour/moretypes/18
 
 练习：切片
 实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像。
@@ -21,8 +21,6 @@ https://tour.go-zh.org/moretypes/18
 内层切片中的每个元素值为 (x+y)/2，x*y...；
 使用嵌套循环的方式计算颜色值。
 */
-
-
 
 func Pic(dx, dy int) [][]uint8 {
 	result := make([][]uint8, dy) // 创建外层切片，返回一个长度为 dy 的切片，元素类型为 uint8 的切片。
@@ -38,5 +36,5 @@ func Pic(dx, dy int) [][]uint8 {
 
 func main() {
 
-	pic.Show(Pic)   // base64加密后输出的结果，需要将IMAGE:换成data:image/png;base64,  然后到http://tool.chinaz.com/tools/imgtobase解密。 或者 echo -n "" | base64 -D > testpic.png
+	pic.Show(Pic) // base64加密后输出的结果，需要将IMAGE:换成data:image/png;base64,  然后到http://tool.chinaz.com/tools/imgtobase解密。 或者 echo -n "xxxxx" | base64 -D > testpic.png
 }

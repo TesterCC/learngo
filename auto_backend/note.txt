@@ -1,0 +1,30 @@
+# 一个最简单的前后端分离crud项目
+
+## frontend
+
+vue3 + ts + pinia + axios + vite
+
+`~/Development/ws_trae/trae_demo/frontend`
+
+## backend
+
+gin + go + sqlite
+
+`～/Development/ws_go/learngo/auto_backend/v4_pagination`
+
+## prompt
+
+### build project
+
+1.用vue3+vite+pinia等工具生成一个todo list应用的前端页面
+
+2.用go+gin+gorm实现这个todo list应用的后端restful api
+
+2.页面需要保存的字段有用户名(username)，昵称(nickname)，手机号(phone)，性别(gender)，职业(job)，编程语言(rust)这个几个字段的内容。
+
+3.应用前后端分离，页面要能做正常的增删改差交互，且前端可以正常请求后端的restful api
+
+### create project doc
+
+[dir_path]根据项目实现的代码，补充项目说明文档，要求说明项目结构，使用方法和运行方式，部署方式，实现原理和技术亮点
+

@@ -4,8 +4,8 @@ import "fmt"
 
 /*
 
-http://127.0.0.1:3999/moretypes/16
 https://tour.go-zh.org/moretypes/16
+https://go.dev/tour/moretypes/16
 
 The range form of the for loop iterates over a slice or map.
 
