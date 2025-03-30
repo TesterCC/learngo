@@ -6,8 +6,8 @@ import (
 )
 
 /*
-http://127.0.0.1:3999/moretypes/24
 https://tour.go-zh.org/moretypes/24
+https://go.dev/tour/moretypes/24
 
 
 函数值
@@ -26,7 +26,7 @@ func main() {
 		return math.Sqrt(x*x + y*y)
 	}
 
-	fmt.Println(hypot(5, 12))
-	fmt.Println(compute(hypot))
-	fmt.Println(compute(math.Pow))
+	fmt.Println(hypot(5, 12))      // 13
+	fmt.Println(compute(hypot))    // 5
+	fmt.Println(compute(math.Pow)) // 81
 }
