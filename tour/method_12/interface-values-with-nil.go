@@ -4,16 +4,13 @@ import "fmt"
 
 /*
 
-http://127.0.0.1:3999/methods/12
 https://tour.go-zh.org/methods/12
+https://go.dev/tour/methods/12
 
-
-底层值为 nil 的接口值
+底层值为 nil 的接口值  todo
 
 即便接口内的具体值为 nil，方法仍然会被 nil 接收者调用。
-
 在一些语言中，这会触发一个空指针异常，但在 Go 中通常会写一些方法来优雅地处理它（如本例中的 M 方法）。
-
 注意: 保存了 nil 具体值的接口其自身并不为 nil。
 */
 
@@ -47,7 +44,6 @@ func main() {
 	i.M()
 }
 
-func describe(i I)  {
+func describe(i I) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
-
