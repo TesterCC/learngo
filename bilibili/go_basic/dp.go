@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// https://www.bilibili.com/video/BV11Q4y157um
+// https://www.bilibili.com/video/BV11Q4y157um   video delete
 
 // 2个长度为1000000的数组求求内积，向量内积计算, go version, python version in python script
 
