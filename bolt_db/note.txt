@@ -1,0 +1,9 @@
+go install github.com/konoui/boltdb-exporter@latest
+
+导出指定bucket数据：
+boltdb-exporter -db trivy.db -bucket vulnerability -format json > trivy_vul_info.json
+
+导出指定数据库数据：
+boltdb-exporter.exe --db fanal.db -format json > fanal_db.json
+
+不知道bucket的就用demo里的脚本查。
