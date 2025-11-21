@@ -49,8 +49,14 @@ func main() {
 	//ctx := context.WithValue(context.Background(), color, color)
 	//<-ctx.Done()
 
-	child := Child{"Chaoyang"}
+	child := Child{"Cat"}
 	fmt.Println(child.Address())
+
+	color2 := Color(Yell)
+	color2.Print(child.Address())
+
+	color3 := Color(Magenta)
+	color3.Print(child.Address())
 
 }
 
