@@ -1,0 +1,1 @@
+package func_and_interface
