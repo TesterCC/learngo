@@ -1,9 +1,57 @@
 go install github.com/konoui/boltdb-exporter@latest
 
 导出指定bucket数据：
-boltdb-exporter -db trivy.db -bucket vulnerability -format json > trivy_vul_info.json
+boltdb-exporter -db trivydb/db/trivy.db -bucket vulnerability -format json > trivy_vul_info.json
 
 导出指定数据库数据：
 boltdb-exporter.exe --db fanal.db -format json > fanal_db.json
 
-不知道bucket的就用demo里的脚本查。
+不知道bucket的就用demo2.go里的脚本查。
+
+cd bolt_db/trivydb
+里面是trivy的三个离线数据库
+
+e.g.
+
+cd bolt_db
+
+boltdb-exporter -db trivydb/db/trivy.db -bucket vulnerability -format json > export_data/trivy_vul_info.json
+
+boltdb-exporter -db trivydb/fanal/fanal.db -bucket artifact -format json > fanal_artifact_info.json
+
+boltdb-exporter -db trivydb/fanal/fanal.db -bucket blob -format json > fanal_blob_info.json
+
+# todo
+boltdb-exporter -db trivydb/java-db/trivy-java.db -bucket xxx -format json > xxx_vul_info.json
+
+
+
+Trivy 常见 bucket 含义（你后面分析会用到）
+Bucket名称	     含义
+artifact	   文件 / 镜像元数据
+blob	       Layer / 文件哈希
+vulnerability  漏洞数据
+advisory	   厂商通告
+wolfi          Wolfi Linux数据
+
+
+demo4和demo5可用：
+
+-db bolt_db/trivydb/db/trivy.db     # vulnerability
+# bucket: Oracle Linux 9
+# bucket: Photon OS 5.0
+# bucket: Red Hat
+# vulnerability    # 这个就是漏洞信息的bucket
+
+-db bolt_db/trivydb/fanal/trivy.db  # empty
+
+-db bolt_db/trivydb/fanal/fanal.db
+Root Bucket: artifact
+Root Bucket: blob
+
+-db bolt_db/trivydb/java-db/trivy-java.db  # 有数据，但很大，去mac上跑一下
+#  2026/02/10 16:10:11 CreateFileMapping: Not enough memory resources are available to process this command.
+# 在 Windows 上 mmap 这么大的文件非常容易失败, 推荐在Linux或docker中跑
+
+和线上系统做json比对脚本在：
+srcsec_rules_mgmt/cveinfo

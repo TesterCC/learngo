@@ -24,3 +24,6 @@ a.txt
 # gin_test_project/gin_call_python_script/call_apt_parser/backup/gapi
 go.mod
 go.sum
+bolt_db/trivydb/
+bolt_db/export_data/
+trivy_vul_info.json

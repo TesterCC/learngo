@@ -10,7 +10,8 @@ import (
 
 func main() {
 	// 打开 trivy.db
-	db, err := bolt.Open("D:\\ws_go\\learngo\\bolt_db\\fanal\\fanal.db", 0600, nil)
+	//db, err := bolt.Open("D:\\ws_go\\learngo\\bolt_db\\trivydb\\fanal\\fanal.db", 0600, nil)
+	db, err := bolt.Open("D:\\ws_go\\learngo\\bolt_db\\trivydb\\db\\trivy.db", 0600, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
